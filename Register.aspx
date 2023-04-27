@@ -8,6 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <h1>Register Page</h1>
         <div>
         </div>
     </form>
