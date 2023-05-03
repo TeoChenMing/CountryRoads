@@ -24,8 +24,8 @@
                 <div class="col-2" >
 
                     <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidebar  vh-100">
-
-                        <span class="fs-4">CountryRoads</span>
+                        
+                        <span class="fs-4"><img src="../Assets/Images/logo.png" style="width: 30px; height: 30px;" /> CountryRoads</span>
                         
                         <ul class="nav nav-pills flex-column mb-auto">
                         <br>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
 
-                <section id="content" class="col-10 z-3" style="margin-top: 100px;">
+                <section id="content" class="col-10 z-3" style="margin-top: 80px;">
      
                     <div class="content">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
