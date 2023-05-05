@@ -114,6 +114,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Admin\AdminDashboard.aspx" />
+    <Content Include="Admin\AdminManageContent.aspx" />
     <Content Include="App_Data\CountryRoadsDB.mdf" />
     <Content Include="App_Data\CountryRoadsDB_log.ldf">
       <DependentUpon>CountryRoadsDB.mdf</DependentUpon>
@@ -220,6 +221,13 @@
     </Compile>
     <Compile Include="Admin\AdminDashboard.aspx.designer.cs">
       <DependentUpon>AdminDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminManageContent.aspx.cs">
+      <DependentUpon>AdminManageContent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminManageContent.aspx.designer.cs">
+      <DependentUpon>AdminManageContent.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
