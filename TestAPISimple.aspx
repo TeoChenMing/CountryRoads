@@ -13,6 +13,7 @@
             <br />
             <br />
             <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" Text="Add into DB!" OnClick="Button2_Click" />
             <br />
             Result: <br />
             _______ <br />
