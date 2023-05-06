@@ -89,21 +89,34 @@ namespace CountryRoads
 
                 //con.Close();
 
-                SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Github\\CountryRoads\\App_Data\\CountryRoadsDB.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
                 con.Open();
 
-                foreach (var test in jsonObject)
+                foreach (var test in jsonObject.Take(5))
                 {
-                    using (var cmd = new SqlCommand("INSERT INTO testing VALUES (@countryID, @countryFlag, @countryArea, @countryPopulation)", con))
+
+                    
+                    //var CountryJoin = string.Join(", ", test.currencies[0].name, test.currencies[0].symbol);
+
+                    using (var cmd = new SqlCommand("INSERT INTO country VALUES (@countryId, @countryName, @countryCapital, @countryFlag, @countryArea, @countryPopulation" +
+                        ",@countryLanguage, @countryCurrency, @countryTimezone, NULL)", con))
                     {
-                        cmd.Parameters.AddWithValue("@countryFlag", test.flag);
+                        cmd.Parameters.AddWithValue("@countryId", test.cca3);
+                        cmd.Parameters.AddWithValue("@countryName", test.name.common);
+                        cmd.Parameters.AddWithValue("@countryCapital", test.capital[0] ?? "");
+                        cmd.Parameters.AddWithValue("@countryFlag", test.flags[0] ?? "");
                         cmd.Parameters.AddWithValue("@countryArea", test.area);
                         cmd.Parameters.AddWithValue("@countryPopulation", test.population);
-                        
-
+                        cmd.Parameters.AddWithValue("@countryLanguage", test.languageNames ?? "");
+                        //cmd.Parameters.AddWithValue("@countryCurrency", CountryJoin);
+                        //cmd.Parameters.AddWithValue("@countryCurrency", test.currencies.name);
+                        //cmd.Parameters.AddWithValue("@countryCurrency", string.Join(", ", test.currencies.Values.Select(c => $"{c.name}, {c.symbol}")));
+                        cmd.Parameters.AddWithValue("@countryTimezone", test.timezones[0]);
+                        cmd.Parameters.AddWithValue("@countryCurrency", "TESTING");
+                        //cmd.Parameters.AddWithValue("@continent", "TA");
                         cmd.ExecuteNonQuery();
 
-                        break;
+                        
                     }
                 };
 
