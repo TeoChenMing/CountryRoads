@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+<%@ Import Namespace="System.Data" %>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
     <h2>Manage Content</h2>
@@ -11,73 +12,76 @@
     <div class="container-fluid">
                             
         <table
+            class="mw-90"
             data-toggle="table"
             data-search="true"
-            data-detail-formatter="detailFormatter"
+            <%-- data-detail-formatter="detailFormatter"  data-id-field="id" 
+            data-response-handler="responseHandler"--%>
             data-pagination="true"
-            data-id-field="id"
+            
             data-page-list="[10, 25, 50, 100, all]"
-            data-side-pagination="server"
-            data-url="https://examples.wenzhixin.net.cn/examples/bootstrap_table/data"
-            data-response-handler="responseHandler"
+            data-side-pagination="client"
                                 
             >
             <thead>
-                <tr class="tr-class-1">
-                    <th data-field="name" rowspan="1" data-valign="middle">Name</th>
-                    <th data-field="star" data-custom-attribute="star">Stars</th>
-                    <th data-field="forks" data-custom-attribute="forks">Forks</th>
-                    <th data-field="description">Description</th>
+                <tr>
+                    <th data-field="code">Code</th>
+                    <th data-field="name">Name</th>
+                    <th data-field="capital">Capital</th>
+                    <th data-align="center" data-halign="left" data-field="flag">Flag</th>
+                    <th data-field="area">Area</th>
+                    <th data-field="population">Population</th>
+                    <th data-field="lang">Language</th>
+                    <th data-field="currency">Currency</th>
+                    <th data-field="timezone">Timezone</th>
+                    <th data-field="continent">Continent</th>
+                    <th data-align="center" data-halign="left" data-field="action">Action</th>
+
+
+                    
                 </tr>
                                     
             </thead>
             <tbody>
-                <tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table" data-object='{"key": "value"}'>
-                    <td id="td-id-1" class="td-class-1" data-title="bootstrap table">
-                        <a href="https://github.com/wenzhixin/bootstrap-table" target="_blank">bootstrap-table</a>
-                    </td>
-                    <td data-value="526">8827</td>
-                    <td data-text="122">3603</td>
-                    <td data-i18n="Description">An extended Bootstrap table with radio, checkbox, sort, pagination, and other added features. (supports twitter bootstrap v2 and v3)
-                    </td>
-                </tr>
-                <tr id="tr-id-2" class="tr-class-2">
-                    <td id="td-id-2" class="td-class-2">
-                        <a href="https://github.com/wenzhixin/multiple-select" target="_blank">multiple-select</a>
-                    </td>
-                    <td>1615</td>
-                    <td>623</td>
-                    <td>A jQuery plugin to select multiple elements with checkboxes 
-                    </td>
-                </tr>
-                <tr id="tr-id-3" class="tr-class-3">
-                    <td id="td-id-3" class="td-class-3">
-                        <a href="https://github.com/wenzhixin/bootstrap-show-password" target="_blank">bootstrap-show-password</a>
-                    </td>
-                    <td>220</td>
-                    <td>85</td>
-                    <td>Show/hide password plugin for twitter bootstrap.
-                    </td>
-                </tr>
-                <tr id="tr-id-4" class="tr-class-4">
-                    <td id="td-id-4" class="td-class-4">
-                        <a href="https://github.com/wenzhixin/bootstrap-table-examples" target="_blank">bootstrap-table-examples</a>
-                    </td>
-                    <td>1734</td>
-                    <td>1532</td>
-                    <td>Bootstrap Table Examples</td>
-                </tr>
-                <tr id="tr-id-5" class="tr-class-5">
-                    <td id="td-id-5" class="td-class-5">
-                        <a href="https://github.com/wenzhixin/scutech-redmine" target="_blank">scutech-redmine</a>
-                    <td>24</td>
-                    <td>18</td>
-                    <td>Redmine notification tools for chrome extension.</td>
-                </tr>
+                <%   foreach (DataRow row in dt.Rows)  { %>
+                    
+                    <tr>
+                        <td><% =row["countryId"] %></td>
+                        <td class="text-nowrap text-truncate" style="max-width: 100px;"><% =row["countryName"] %> </td>
+                        <td class="text-nowrap text-truncate" style="max-width: 200px;">
+                            <% =row["countryCapital"] %>
+             
+                        </td>
+                        <td><img style="width: 50px; height: 30px;" src="<% =row["countryFlag"] %>" alt="Image"></td>
+                        <td><% =row["countryArea"] %></td>
+                        <td class="text-nowrap text-truncate" style="max-width: 100px;"><% =row["countryPopulation"] %></td>
+                        <td class="text-nowrap text-truncate" style="max-width: 200px;"><% =row["countryLanguage"] %></td>
+                        <td><% =row["countryCurrency"] %></td>
+                        <td class="text-nowrap text-truncate" style="max-width: 150px;"><% =row["countryTimezone"] %></td>
+                        <td><% =row["continentCode"] %></td>
+                        <td><a class="editBtn" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="bi bi-pencil-square"></i></a></td>
+                    </tr>
+                <% 
+                    } %>
+
+              <%--  <td style="width: 5%;"><% =row["countryId"] %></td>
+                        <td style="width: 10%;"><% =row["countryName"] %></td>
+                        <td style="width: 10%;"><% =row["countryCapital"] %></td>
+                        <td style="width: 10%;"><img style="width: 50px; height: 30px;" src="<% =row["countryFlag"] %>" alt="Image"></td>
+                        <td style="width: 10%;"><% =row["countryArea"] %></td>
+                        <td style="width: 10%;"><% =row["countryPopulation"] %></td>
+                        <td style="width: 15%;"><% =row["countryLanguage"] %></td>
+                        <td style="width: 10%;"><% =row["countryCurrency"] %></td>
+                        <td style="width: 10%;"><% =row["countryTimezone"] %></td>
+                        <td style="width: 5%;"><% =row["continentCode"] %></td>--%>
             </tbody>
         </table>
+
+        
                             
     </div>
 
+
+    
                    
 </asp:Content>
