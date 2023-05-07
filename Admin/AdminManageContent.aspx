@@ -54,13 +54,14 @@
                         </td>
                         <td><img style="width: 50px; height: 30px;" src="<% =row["countryFlag"] %>" alt="Image"></td>
                         <td><% =row["countryArea"] %></td>
-                        <td class="text-nowrap text-truncate" style="max-width: 100px;"><% =row["countryPopulation"] %></td>
+                        <td class="text-nowrap text-truncate" style="max-width:stretch"" 100px;"><% =row["countryPopulation"] %></td>
                         <td class="text-nowrap text-truncate" style="max-width: 200px;"><% =row["countryLanguage"] %></td>
                         <td><% =row["countryCurrency"] %></td>
                         <td class="text-nowrap text-truncate" style="max-width: 150px;"><% =row["countryTimezone"] %></td>
-                        <td><% =row["continentCode"] %></td>
-                        <td><a class="editBtn" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="bi bi-pencil-square"></i></a></td>
+                        <td><% =row["continentCode"] %></td>         
+                        <td><asp:LinkButton class="editBtn" ID="EditBts=n" OnClick="EditBtn_Click" data-bs-toggle="modal" data-bs-target="#exampleModal" runat="server"><i class="bi bi-pencil-square"></i></asp:LinkButton></td>
                     </tr>
+             
                 <% 
                     } %>
 

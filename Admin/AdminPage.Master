@@ -20,6 +20,7 @@
 
 </head>
 <body>
+    
     <div class="container-fluid">
         <div class="row">
 
@@ -30,7 +31,7 @@
                         <span class="fs-4"><img src="../Assets/Images/logo.png" style="width: 30px; height: 30px;" /> CountryRoads</span>
                         
                         <ul class="nav nav-pills flex-column mb-auto">
-                        <br>
+                        
                         <li class="nav-item">
                             <a href="#" class="nav-link active" aria-current="page">
                             <i class="bi bi-columns-gap"></i>
@@ -72,9 +73,11 @@
                 <section id="content" class="col-10 z-3" style="margin-top: 80px;">
      
                     <div class="content">
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        <form runat="server">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 
-                        </asp:ContentPlaceHolder>
+                            </asp:ContentPlaceHolder>
+                        </form>
                     </div>
 
                 </section>
@@ -91,20 +94,124 @@
                 </div>
 
         </div>
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
-          <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-dialog modal-dialog-centered modal-lg ">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Country - Malaysia</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                ...
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <label for="name" class="form-label">Name:</label>
+                            </div>
+                            
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <label for="code" class="form-label">Code:</label>
+                            </div>
+                            
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="code" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <label for="capital" class="form-label">Capital:</label>
+                            </div>
+                            
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="capital">
+                            </div>
+                            
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <label for="area" class="form-label">Area:</label>
+                            </div>
+                            
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="area">
+                            </div>
+                            
+                        </div>
+                        
+                    </div> 
+                    <div class="col-6">
+                        <img style="width: 350px;" src="https://flagcdn.com/ai.svg">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <label for="population" class="form-label">Population:</label>
+                            </div>
+                            
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="population">
+                            </div>
+                            
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <label for="language" class="form-label">Languages:</label>
+                            </div>
+                            
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="language">
+                            </div>
+                            
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <label for="currency" class="form-label">Currency:</label>
+                            </div>
+                            
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="currency">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <label for="timezone" class="form-label">Timezone:</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="timezone" disabled>
+                            </div>
+                            
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <label for="continent" class="form-label">Continent:</label>
+                            </div>
+                           
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="continent" disabled>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Update</button>
               </div>
             </div>
           </div>

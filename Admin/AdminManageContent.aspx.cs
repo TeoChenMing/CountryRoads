@@ -30,5 +30,10 @@ namespace CountryRoads.Admin
 
             }
         }
+
+        protected void EditBtn_Click(object sender, EventArgs e)
+        {
+            Console.Write("TESTING");
+        }
     }
 }
