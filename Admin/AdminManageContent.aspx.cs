@@ -18,8 +18,8 @@ namespace CountryRoads.Admin
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
             con.Open();
 
-            if (!Page.IsPostBack)
-            {
+            //if (!Page.IsPostBack)
+            //{
                 SqlDataAdapter da = new SqlDataAdapter("select * from country", con);
 
                 dt = new DataTable();
@@ -28,12 +28,10 @@ namespace CountryRoads.Admin
                 DataBind();
 
 
-            }
+            //}
         }
 
-        protected void EditBtn_Click(object sender, EventArgs e)
-        {
-            Console.Write("TESTING");
-        }
+   
+       
     }
 }

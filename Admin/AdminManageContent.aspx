@@ -15,8 +15,7 @@
             class="mw-90"
             data-toggle="table"
             data-search="true"
-            <%-- data-detail-formatter="detailFormatter"  data-id-field="id" 
-            data-response-handler="responseHandler"--%>
+            
             data-pagination="true"
             
             data-page-list="[10, 25, 50, 100, all]"
@@ -43,7 +42,7 @@
                                     
             </thead>
             <tbody>
-                <%   foreach (DataRow row in dt.Rows)  { %>
+                <%   if (dt != null) { foreach (DataRow row in dt.Rows)  { %>
                     
                     <tr>
                         <td><% =row["countryId"] %></td>
@@ -59,11 +58,11 @@
                         <td><% =row["countryCurrency"] %></td>
                         <td class="text-nowrap text-truncate" style="max-width: 150px;"><% =row["countryTimezone"] %></td>
                         <td><% =row["continentCode"] %></td>         
-                        <td><asp:LinkButton class="editBtn" ID="EditBts=n" OnClick="EditBtn_Click" data-bs-toggle="modal" data-bs-target="#exampleModal" runat="server"><i class="bi bi-pencil-square"></i></asp:LinkButton></td>
+                        <td><a class="editBtn" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="bi bi-pencil-square"></i></a></td>
                     </tr>
-             
+                
                 <% 
-                    } %>
+                    } }%>
 
               <%--  <td style="width: 5%;"><% =row["countryId"] %></td>
                         <td style="width: 10%;"><% =row["countryName"] %></td>
@@ -77,12 +76,14 @@
                         <td style="width: 5%;"><% =row["continentCode"] %></td>--%>
             </tbody>
         </table>
-
-        
-                            
+        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">LinkButton</asp:LinkButton> <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>              
     </div>
 
 
     
                    
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="jsscript" runat="server">
+
 </asp:Content>
