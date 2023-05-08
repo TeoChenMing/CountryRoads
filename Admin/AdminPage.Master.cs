@@ -14,5 +14,11 @@ namespace CountryRoads.Admin
         {
 
         }
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            Session.Remove("userName");
+            Response.Redirect("~/Admin/AdminLogin.aspx");
+        }
     }
 }

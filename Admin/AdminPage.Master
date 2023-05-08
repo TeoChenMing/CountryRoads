@@ -20,7 +20,7 @@
 
 </head>
 <body>
-    
+    <form runat="server">
     <div class="container-fluid">
         <div class="row">
 
@@ -33,7 +33,7 @@
                         <ul class="nav nav-pills flex-column mb-auto mt-5">
                         
                             <li class="nav-item">
-                                <a href="#" class="nav-link active" aria-current="page">
+                                <a href="AdminDashboard" class="nav-link active link-body-emphasis" aria-current="page">
                                 <i class="bi bi-columns-gap"></i>
                                 Dashboard
                                 </a>
@@ -45,7 +45,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-body-emphasis">
+                                <a href="AdminManageContent" class="nav-link link-body-emphasis">
                                 <i class="bi bi-clipboard"></i>
                                 Content
                                 </a>
@@ -58,13 +58,13 @@
                             </li>
                         </ul>
                         <hr>
-                        <div class="">
-                        <a href="#" class="text-decoration-none text-danger">
-                            
-                            <strong><i class="bi bi-box-arrow-left"></i> Sign Out</strong>
-                        </a>
                         
-                        </div>
+                            <asp:LinkButton ID="Logout" runat="server" class="text-decoration-none text-danger" OnClick="Logout_Click">
+
+                                <strong><i class="bi bi-box-arrow-left"></i> Sign Out</strong>
+
+                            </asp:LinkButton>
+                        
     
  
                     </div>
@@ -73,11 +73,11 @@
                 <section id="content" class="col-10 z-3" style="margin-top: 80px;">
      
                     <div class="content">
-                        <form runat="server">
+                        
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 
                             </asp:ContentPlaceHolder>
-                        </form>
+                        
                     </div>
 
                 </section>
@@ -224,10 +224,33 @@
     <asp:ContentPlaceHolder ID="jsscript" runat="server">
 
     </asp:ContentPlaceHolder>
+    <script>
+        // Get the current page URL
+        var url = window.location.href;
+        
+        
+        // Get all the anchor tags in the navigation menu
+        var links = document.querySelectorAll('.nav-link');
+        
+        // Loop through each anchor tag
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            
+            // Check if the link's href matches the current page URL
+            if (link.href === url) {
+                // Add the active class to the link's parent element (li)
+                link.classList.add('active');
+            } else {
+                // Remove the active class from the link's parent element (li)
+                link.classList.remove('active');
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+    </form>
 </body>
 </html>

@@ -17,9 +17,7 @@
             data-search="true"
             
             data-pagination="true"
-            
-            data-page-list="[10, 25, 50, 100, all]"
-            data-side-pagination="client"
+            <%--data-side-pagination="client"--%>
                                 
             >
             <thead>
@@ -42,14 +40,16 @@
                                     
             </thead>
             <tbody>
-                <%   if (dt != null) { foreach (DataRow row in dt.Rows)  { %>
-                    
+                <%   if (dt != null) { foreach (DataRow row in dt.Rows)  {
+
+                %>
+                        
+                        
                     <tr>
                         <td><% =row["countryId"] %></td>
                         <td class="text-nowrap text-truncate" style="max-width: 100px;"><% =row["countryName"] %> </td>
                         <td class="text-nowrap text-truncate" style="max-width: 200px;">
                             <% =row["countryCapital"] %>
-             
                         </td>
                         <td><img style="width: 50px; height: 30px;" src="<% =row["countryFlag"] %>" alt="Image"></td>
                         <td><% =row["countryArea"] %></td>

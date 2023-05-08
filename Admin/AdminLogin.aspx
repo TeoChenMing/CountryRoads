@@ -30,8 +30,12 @@
                             <label for="password" class="form-label">Password</label>
                             <asp:TextBox type="password" class="form-control" ID="password" runat="server"></asp:TextBox>
                         </div>
-                        
+
+                        <asp:Label ID="ErrorMsg" class="text text-danger" runat="server" Text="" ></asp:Label>
+
                         <asp:Button ID="Login" type="submit" class="btn btn-primary mt-4" runat="server" Text="Login" OnClick="Login_Click"/>
+
+                        
                         
                     </div>
                 

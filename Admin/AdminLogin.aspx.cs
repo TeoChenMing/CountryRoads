@@ -48,7 +48,7 @@ namespace CountryRoads.Admin
             }
             else
             {
-                
+                ErrorMsg.Text = "Username or Password is incorrect. Please Try Again.";
                 return;
             }
 
