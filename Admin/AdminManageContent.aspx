@@ -28,7 +28,7 @@
                     <th data-field="name">Name</th>
                     <th data-field="capital">Capital</th>
                     <th data-align="center" data-halign="left" data-field="flag">Flag</th>
-                    <th data-field="area">Area</th>
+                    <th data-field="area">Area (km2)</th>
                     <th data-field="population">Population</th>
                     <th data-field="lang">Language</th>
                     <th data-field="currency">Currency</th>
@@ -55,7 +55,7 @@
                         <td><% =row["countryArea"] %></td>
                         <td class="text-nowrap text-truncate" style="max-width:stretch"" 100px;"><% =row["countryPopulation"] %></td>
                         <td class="text-nowrap text-truncate" style="max-width: 200px;"><% =row["countryLanguage"] %></td>
-                        <td><% =row["countryCurrency"] %></td>
+                        <td><% =row["countryCurrency"] ?? "None" %></td>
                         <td class="text-nowrap text-truncate" style="max-width: 150px;"><% =row["countryTimezone"] %></td>
                         <td><% =row["continentCode"] %></td>         
                         <td><a class="editBtn" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="bi bi-pencil-square"></i></a></td>
@@ -76,8 +76,7 @@
                         <td style="width: 5%;"><% =row["continentCode"] %></td>--%>
             </tbody>
         </table>
-        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
-        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">LinkButton</asp:LinkButton> <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>              
+                  
     </div>
 
 
