@@ -14,6 +14,7 @@
             <br />
             <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
             <asp:Button ID="Button2" runat="server" Text="Add into DB!" OnClick="Button2_Click" />
+            <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Button" />
             <br />
             Result: <br />
             _______ <br />
@@ -21,6 +22,7 @@
             <asp:Label ID="testresult" runat="server">
 
             </asp:Label>
+            <asp:Label ID="Label1" runat="server"></asp:Label>
         </div>
     </form>
 </body>

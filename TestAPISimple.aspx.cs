@@ -1,15 +1,19 @@
 ﻿using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace CountryRoads
 {
@@ -39,6 +43,11 @@ namespace CountryRoads
                 var body = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(body);
                 testresult.Text = body;
+
+                using (StreamWriter writer = new StreamWriter("C:\\Users\\aaron\\Documents\\GitHub\\CountryRoads\\country.txt"))
+                {
+                    writer.WriteLine(body);
+                }
             }
         }
 
@@ -113,10 +122,31 @@ namespace CountryRoads
                         //cmd.Parameters.AddWithValue("@countryCurrency", string.Join(", ", test.currencies.Values.Select(c => $"{c.name}, {c.symbol}")));
                         cmd.Parameters.AddWithValue("@countryTimezone", test.timezones[0]);
                         cmd.Parameters.AddWithValue("@countryCurrency", "TESTING");
-                        //cmd.Parameters.AddWithValue("@continent", "TA");
-                        cmd.ExecuteNonQuery();
 
-                        
+                        //Currency test2 = test.currencies;
+                        //Label1.Text += test.area;
+                        //Label1.Text += test2.Keys;
+
+
+
+                        //Currency cur = JsonConvert.DeserializeObject<Currency>(test6);
+                        //Label1.Text += cur.key;
+                        //Label1.Text += test5.symbol;
+
+                        //foreach(test5)
+                        //var currenciesList = "";
+                        //foreach (var currency in test.currencies)
+                        //{ 
+                        //    var countryCurrency = currency.Value;
+                        //    currenciesList += countryCurrency.name;
+                        //}
+                        //Label1.Text = currenciesList;
+
+
+                        //cmd.Parameters.AddWithValue("@continent", "TA");
+                        //cmd.ExecuteNonQuery();
+
+
                     }
                 };
 
@@ -125,6 +155,45 @@ namespace CountryRoads
             }
             //perform add into db
             
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            string readText = File.ReadAllText("C:\\Users\\aaron\\Documents\\GitHub\\CountryRoads\\country.txt");
+            var jsonObject = JsonConvert.DeserializeObject<List<test>>(readText);
+            
+
+
+            foreach (var test in jsonObject)
+            {
+                var currenciesJSON = test.currencies.ToString();
+                if (test.name.common == "Bahamas")
+                {
+                    try
+                    {
+
+                        var currencyJSON = JsonConvert.DeserializeObject<Dictionary<String, Object>>(test.currencies.ToString());
+                        foreach (var key in currencyJSON.Values.Take(1))
+                        {
+                            List<String> currencyDetails;
+                            var detailsJSON = JsonConvert.DeserializeObject<Dictionary<String, String>>(key.ToString());
+                            foreach (var details in detailsJSON)
+                            {
+                                Label1.Text += details.Value.ToString();
+                                
+                            }
+                        }
+
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Label1.Text = ex.Message;
+                    }
+                }
+            }
+
         }
     }
 }
