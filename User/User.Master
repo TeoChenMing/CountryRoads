@@ -64,14 +64,12 @@
             </asp:ContentPlaceHolder>
         </div>
         <%-- World Map Placeholder --%>
-
-        <%-- World Map Placeholder --%>
-        <div style="margin: 0 10%">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-        <%-- World Map Placeholder --%>
-
     </form>
 </body>
+
+<%--Javascript (If Any)--%>
+<asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+</asp:ContentPlaceHolder>
+
+
 </html>

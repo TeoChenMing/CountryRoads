@@ -13,5 +13,22 @@ namespace CountryRoads.User
         {
 
         }
+
+        protected void Path_MouseOver(object sender, EventArgs e)
+        {
+
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string UpdateName(string name)
+        {
+            return name;
+        }
+
+        protected void hdnfldVariable_ValueChanged(object sender, EventArgs e)
+        {
+            string variable = hdnfldVariable.Value;
+            Label1.Text = variable;
+        }
     }
 }
