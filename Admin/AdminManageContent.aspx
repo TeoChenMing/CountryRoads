@@ -12,13 +12,12 @@
     <div class="container-fluid">
                             
         <table
+            id="myTable"
             class="mw-90"
             data-toggle="table"
             data-search="true"
             
             data-pagination="true"
-            <%--data-side-pagination="client"--%>
-                                
             >
             <thead>
                 <tr>
@@ -42,6 +41,7 @@
             <tbody>
                 <%   if (dt != null) { foreach (DataRow row in dt.Rows)  {
 
+                            
                 %>
                         
                         
@@ -52,28 +52,35 @@
                             <% =row["countryCapital"] %>
                         </td>
                         <td><img style="width: 50px; height: 30px;" src="<% =row["countryFlag"] %>" alt="Image"></td>
-                        <td><% =row["countryArea"] %></td>
+                        <td>
+                            <%--<% =row["countryArea"] %>--%>
+                            <% 
+                                if (row["countryArea"].ToString().Contains("."))
+                                {
+                                    decimal originalValue = Convert.ToDecimal(row["countryArea"]);
+                                    decimal roundedValue = decimal.Round(originalValue, 2);
+
+                                    Response.Write(roundedValue.ToString());
+                                } else
+                                {
+                                    Response.Write(row["countryArea"]);
+                                }
+                                
+
+                             %>
+                        </td>
                         <td class="text-nowrap text-truncate" style="max-width:stretch"" 100px;"><% =row["countryPopulation"] %></td>
                         <td class="text-nowrap text-truncate" style="max-width: 200px;"><% =row["countryLanguage"] %></td>
-                        <td><% =row["countryCurrency"] ?? "None" %></td>
+                        <td><% =row["countryCurrency"] %></td>
                         <td class="text-nowrap text-truncate" style="max-width: 150px;"><% =row["countryTimezone"] %></td>
-                        <td><% =row["continentCode"] %></td>         
-                        <td><a class="editBtn" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="bi bi-pencil-square"></i></a></td>
+                        <td><% =row["continent"] %></td>         
+                        <td><a class="editBtn" href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="bi bi-pencil-square"></i></a></td>
                     </tr>
                 
                 <% 
                     } }%>
 
-              <%--  <td style="width: 5%;"><% =row["countryId"] %></td>
-                        <td style="width: 10%;"><% =row["countryName"] %></td>
-                        <td style="width: 10%;"><% =row["countryCapital"] %></td>
-                        <td style="width: 10%;"><img style="width: 50px; height: 30px;" src="<% =row["countryFlag"] %>" alt="Image"></td>
-                        <td style="width: 10%;"><% =row["countryArea"] %></td>
-                        <td style="width: 10%;"><% =row["countryPopulation"] %></td>
-                        <td style="width: 15%;"><% =row["countryLanguage"] %></td>
-                        <td style="width: 10%;"><% =row["countryCurrency"] %></td>
-                        <td style="width: 10%;"><% =row["countryTimezone"] %></td>
-                        <td style="width: 5%;"><% =row["continentCode"] %></td>--%>
+              
             </tbody>
         </table>
                   
@@ -84,5 +91,113 @@
                    
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="jsscript" runat="server">
+    <script>
 
+        $('#myTable').on('click', 'tr', function () {
+            
+            // get the values of the cells in the row
+            var rowData = $(this).children('td').map(function () {
+                return $(this).text();
+            }).get();
+
+            
+            // set the modal content based on the row data
+            $('#myModal .modal-title').text("Edit Country - " + rowData[1]);
+            $('#myModal .modal-body').html(
+
+                '<div class="row">' +
+                '<div class="col-6">' +
+                '<div class="row mb-3">' +
+                '<div class="col-3">' +
+                '<label for="name" class="form-label">Name:</label>' +
+                '</div>' +
+                '<div class="col-8">' +
+                '<input type="text" class="form-control" id="name" value="' + rowData[1] + '">' +
+                '</div>' +
+                '</div>' +
+                '<div class="row mb-3">' +
+                '<div class="col-3">' +
+                '<label for="code" class="form-label">Code:</label>' +
+                '</div>' +
+                '<div class="col-8">' +
+                '<input type="text" class="form-control" id="code" value="' + rowData[0] + '" disabled>' +
+                '</div>' +
+                '</div>' +
+                '<div class="row mb-3">' +
+                '<div class="col-3">' +
+                '<label for="capital" class="form-label">Capital:</label>' +
+                '</div>' +
+                '<div class="col-8">' +
+                '<input type="text" class="form-control" id="capital" value="' + rowData[2] + '">' +
+                '</div>' +
+                '</div>' +
+                '<div class="row mb-3">' +
+                '<div class="col-3">' +
+                '<label for="area" class="form-label">Area:</label>' +
+                '</div>' +
+                '<div class="col-8">' +
+                '<input type="text" class="form-control" id="area" value="' + rowData[4] + '" >' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-6">' +
+                '<img style="width: 350px; height: 200px;" src="' + $(this).find('img').attr('src') + '">' +
+                '</div>' +
+                '</div>' +
+                '<div class="row">' +
+                '<div class="col-6">' +
+                '<div class="row mb-3">' +
+                '<div class="col-3">' +
+                '<label for="population" class="form-label">Population:</label>' +
+                '</div>' +
+                '<div class="col-8">' +
+                '<input type="text" class="form-control" id="population" value="' + rowData[5] + '" >' +
+                '</div>' +
+                '</div>' +
+                '<div class="row mb-3">' +
+                '<div class="col-3">' +
+                '<label for="language" class="form-label">Languages:</label>' +
+                '</div>' +
+                '<div class="col-8">' +
+                '<input type="text" class="form-control" id="language" value="' + rowData[6] + '" >' +
+                '</div>' +
+                '</div>' +
+                '<div class="row mb-3">' +
+                '<div class="col-3">' +
+                '<label for="currency" class="form-label">Currency:</label>' +
+                '</div>' +
+                '<div class="col-8">' +
+                '<input type="text" class="form-control" id="currency" value="' + rowData[7] + '" >' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-6">' +
+                '<div class="row mb-3">' +
+                '<div class="col-3">' +
+                '<label for="timezone" class="form-label">Timezone:</label>' +
+                '</div>' +
+                '<div class="col-8">' +
+                '<input type="text" class="form-control" id="timezone" value="' + rowData[8] + '" disabled >' +
+                '</div>' +
+                '</div>' +
+                '<div class="row mb-3">' +
+                '<div class="col-3">' +
+                '<label for="continent" class="form-label">Continent:</label>' +
+                '</div>' +
+                '<div class="col-8">' +
+                '<input type="text" class="form-control" id="continent" value="' + rowData[9] + '" disabled >' +
+                '</div>' +
+                '</div>' +
+                '</div>' 
+            );
+
+            
+        });
+
+        // event listener for the hidden.bs.modal event
+        $('#myModal').on('hidden.bs.modal', function () {
+            // remove the event listener for the shown.bs.modal event
+            $(this).off('shown.bs.modal');
+        });
+    </script>
 </asp:Content>

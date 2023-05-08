@@ -42,19 +42,42 @@ namespace CountryRoads
             {
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(body);
-                testresult.Text = body;
+                var jsonObject = JsonConvert.DeserializeObject<List<test>>(body);
+                string continentsString;
 
-                using (StreamWriter writer = new StreamWriter("C:\\Users\\aaron\\Documents\\GitHub\\CountryRoads\\country.txt"))
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
+                con.Open();
+
+                foreach (var test in jsonObject.Take(5))
                 {
-                    writer.WriteLine(body);
+                    if (test.continents.Count > 2)
+                    {
+
+                        continentsString = string.Join(", ", test.continents);
+
+                    }
+                    else
+                    {
+                        continentsString = test.continents[0];
+                    }
+
+
+                    //Console.WriteLine(body);
+                    testresult.Text += continentsString;
                 }
+                    
+                
+
+                //using (StreamWriter writer = new StreamWriter("C:\\Users\\aaron\\Documents\\GitHub\\CountryRoads\\country.txt"))
+                //{
+                //    writer.WriteLine(body);
+                //}
             }
         }
 
         protected async void Button2_Click(object sender, EventArgs e)
         {
-            //fetch
+            
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
@@ -71,56 +94,28 @@ namespace CountryRoads
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
                 var jsonObject = JsonConvert.DeserializeObject<List<test>>(body);
-
-                //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Github\\CountryRoads\\App_Data\\CountryRoadsDB.mdf;Integrated Security=True");
-                //con.Open();
-
-                //foreach(var country in jsonObject) 
-                //    {
-                //    using (var cmd = new SqlCommand("INSERT INTO country (countryId, countryName, countryCapital, countryFlag, countryArea, " +
-                //        "countryPopulation, countryLanguage, countryCurrency, countryTimeZone, continentCode) VALUES (@countryId, @countryName, " +
-                //        "@countryCapital, @countryFlag, @countryArea, @countryPopulation, @countryLanguage, @countryCurrency, @countryTimeZone, TA)", con))
-                //        {
-                //            cmd.Parameters.AddWithValue("@countryCode", country.CountryId);
-                //            cmd.Parameters.AddWithValue("@countryName", country.CountryName);
-                //            cmd.Parameters.AddWithValue("@countryCapital", country.CountryCapital);
-                //            cmd.Parameters.AddWithValue("@countryFlag", country.CountryFlag);
-                //            cmd.Parameters.AddWithValue("@countryArea", country.CountryArea);
-                //            cmd.Parameters.AddWithValue("@countryPopulation", country.CountryPopulation);
-                //            cmd.Parameters.AddWithValue("@countryLanguage", country.CountryLanguage);
-                //            cmd.Parameters.AddWithValue("@countryCurrency", country.CountryCurrency);
-                //            cmd.Parameters.AddWithValue("@countryTimezone", country.CountryTimezone);
-
-                //            cmd.ExecuteNonQuery();
-
-                //        break;
-                //        }
-                //    };
-
-                //con.Close();
+                string continentsString;
 
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
                 con.Open();
 
-                foreach (var test in jsonObject.Take(5))
+                foreach (var test in jsonObject)
                 {
-                    //var CountryJoin = string.Join(", ", test.currencies[0].name, test.currencies[0].symbol);
+                    if (test.continents.Count > 1) {
 
-                    using (var cmd = new SqlCommand("INSERT INTO country VALUES (@countryId, @countryName, @countryCapital, @countryFlag, @countryArea, @countryPopulation" +
-                        ",@countryLanguage, @countryCurrency, @countryTimezone, NULL)", con))
+                        continentsString = string.Join(", ", test.continents);
+
+                    } else
                     {
-                        cmd.Parameters.AddWithValue("@countryId", test.cca3);
+                        continentsString = test.continents[0];
+                    }
+                    
+
+                    using (var cmd = new SqlCommand("UPDATE country SET continent = @continent WHERE countryName = @countryName", con))
+                    {
+
                         cmd.Parameters.AddWithValue("@countryName", test.name.common);
-                        cmd.Parameters.AddWithValue("@countryCapital", test.capital[0] ?? "");
-                        cmd.Parameters.AddWithValue("@countryFlag", test.flags[0] ?? "");
-                        cmd.Parameters.AddWithValue("@countryArea", test.area);
-                        cmd.Parameters.AddWithValue("@countryPopulation", test.population);
-                        cmd.Parameters.AddWithValue("@countryLanguage", test.languageNames ?? "");
-                        //cmd.Parameters.AddWithValue("@countryCurrency", CountryJoin);
-                        //cmd.Parameters.AddWithValue("@countryCurrency", test.currencies.name);
-                        //cmd.Parameters.AddWithValue("@countryCurrency", string.Join(", ", test.currencies.Values.Select(c => $"{c.name}, {c.symbol}")));
-                        cmd.Parameters.AddWithValue("@countryTimezone", test.timezones[0]);
-                        cmd.Parameters.AddWithValue("@countryCurrency", "TESTING");
+                        cmd.Parameters.AddWithValue("@continent", continentsString);
 
 
                         cmd.ExecuteNonQuery();

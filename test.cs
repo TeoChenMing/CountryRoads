@@ -40,8 +40,11 @@ namespace CountryRoads
         //public Dictionary<string, Currency> currencies { get; set; }
 
         public JSON currency { get; set; }
+
+        public List<string> continents { get; set; }
     }
 
+    
     public class Name
     {
         public string common { get; set; }

@@ -15,20 +15,27 @@ namespace CountryRoads.Admin
         protected DataTable dt;
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
-            con.Open();
+            if (Session["userName"] != null)
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
+                con.Open();
 
-            //if (!Page.IsPostBack)
-            //{
-                SqlDataAdapter da = new SqlDataAdapter("select * from country", con);
+                if (!Page.IsPostBack)
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("select * from country", con);
 
-                dt = new DataTable();
-                da.Fill(dt);
-                
-                DataBind();
+                    dt = new DataTable();
+                    da.Fill(dt);
+
+                    DataBind();
 
 
-            //}
+                }
+            } else
+            {
+                Response.Redirect("~/Admin/AdminLogin.aspx");
+            }
+            
         }
 
    

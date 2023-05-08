@@ -11,7 +11,14 @@ namespace CountryRoads.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["userName"] != null)
+            {
 
+            }
+            else
+            {
+                Response.Redirect("~/Admin/AdminLogin.aspx");
+            }
         }
     }
 }
