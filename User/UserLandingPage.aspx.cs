@@ -13,8 +13,6 @@ namespace CountryRoads.User
         {
 
         }
-<<<<<<< Updated upstream
-=======
 
         protected void Path_MouseOver(object sender, EventArgs e)
         {
@@ -26,6 +24,5 @@ namespace CountryRoads.User
         {
             return "This is your country: " + name;
         }
->>>>>>> Stashed changes
     }
 }

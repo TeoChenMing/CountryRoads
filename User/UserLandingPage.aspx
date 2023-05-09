@@ -1,10 +1,30 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/User.Master" AutoEventWireup="true" CodeBehind="UserLandingPage.aspx.cs" Inherits="CountryRoads.User.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        path {
+            fill: powderblue;
+        }
+
+        path:hover {
+            fill: aqua;
+        }
+
+        #name {
+            position: absolute;
+            background-color: rgb(255, 255, 255);
+            width: fit-content;
+            opacity: 0;
+            border-radius: 5px;
+            border: 3px solid powderblue;
+            padding: 0px 3px;
+            font-size: 1.5rem;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>Click a country to learn more about it.</p>
-    <div style="width: 100%; border: 1px solid black; background-color: rgb(50,50,68)">
+    <div style="width: 100%; border: 1px solid black;">
         <?xml version="1.0" ?>
         <!--
 		*************Map created by Simplemaps.com********************		
@@ -1543,4 +1563,3 @@
         })
     </script>
 </asp:Content>
->>>>>>> Stashed changes
