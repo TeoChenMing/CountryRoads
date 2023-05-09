@@ -32,13 +32,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>Click a country to learn more about it.</p>
+    <%--Floating Text--%>
+    <div id="name">
+        <p id="namep">Name</p>
+    </div>
     <div style="width: 100%; border: 1px solid black;">
         <?xml version="1.0" ?>
-
-        <%--Floating Text--%>
-        <div id="name">
-            <p id="namep">Name</p>
-        </div>
 
         <%--Map--%>
         <svg id="allSvg" baseProfile="tiny" fill="#ececec" stroke="black" stroke-linecap="round" stroke-linejoin="round" version="1.2" viewBox="0 0 2000 857" xmlns="http://www.w3.org/2000/svg">
@@ -1554,7 +1553,7 @@
                                 <asp:Label class="form-control" ID="CountryCurrencyModel" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -1562,10 +1561,7 @@
     </div>
     <%--Modal End--%>
 
-
-
-
-    <%--Hidden Elements goes here--%>
+    <%-- Hidden Elements goes here--%>
     <div hidden>
         <asp:HiddenField runat="server" ID="SendA" Value="" />
         <asp:Button ID="CountryButton" runat="server" OnClick="CountryButton_Click" Text="Button" />
