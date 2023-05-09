@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Globalization;
 
 namespace CountryRoads.Admin
 {
@@ -20,8 +21,8 @@ namespace CountryRoads.Admin
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
                 con.Open();
 
-                if (!Page.IsPostBack)
-                {
+                //if (!Page.IsPostBack)
+                //{
                     SqlDataAdapter da = new SqlDataAdapter("select * from country", con);
 
                     dt = new DataTable();
@@ -30,7 +31,7 @@ namespace CountryRoads.Admin
                     DataBind();
 
 
-                }
+                //}
             } else
             {
                 Response.Redirect("~/Admin/AdminLogin.aspx");
@@ -40,21 +41,31 @@ namespace CountryRoads.Admin
 
         protected void Update_Click(object sender, EventArgs e)
         {
-            
+
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
             con.Open();
 
             
-            SqlDataAdapter da = new SqlDataAdapter("select * from country", con);
+            using (var cmd = new SqlCommand("UPDATE country SET countryName = @countryName, countryCapital = @countryCapital, countryArea = @countryArea, countryPopulation = @countryPopulation, " +
+                "countryLanguage = @countryLanguage, countryCurrency = @countryCurrency WHERE countryId = @countryCode", con))
+            {
+                cmd.Parameters.AddWithValue("@countryCode", CountryCode.Value);
+                cmd.Parameters.AddWithValue("@countryName", CountryName.Value);
+                cmd.Parameters.AddWithValue("@countryCapital", Capital.Value);
+                cmd.Parameters.AddWithValue("@countryArea", Int64.Parse(Area.Value));
+                cmd.Parameters.AddWithValue("@countryPopulation", float.Parse(Population.Value, CultureInfo.InvariantCulture.NumberFormat));
+                cmd.Parameters.AddWithValue("@countryLanguage", Languages.Value);
+                cmd.Parameters.AddWithValue("@countryCurrency", Currency.Value);
 
-            dt = new DataTable();
-            da.Fill(dt);
+                cmd.ExecuteNonQuery();
 
-            DataBind();
+                
+            }
 
-            Label1.Text = CountryName.Value;
+            con.Close();
 
-            //DataTable dt = (DataTable)ViewState["dt"];
+            Response.Redirect(Request.RawUrl);
+
         }
 
    

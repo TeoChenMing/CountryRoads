@@ -8,9 +8,9 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
     <h2>Manage Content</h2>
-    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     <div class="container-fluid">
-        <asp:HiddenField ID="CountryName" runat="server" Value="YOURMOM"/>  
+        <asp:HiddenField ID="CountryCode" runat="server" Value=""/>  
+        <asp:HiddenField ID="CountryName" runat="server" Value=""/>  
         <asp:HiddenField ID="Capital" runat="server" Value=""/>
         <asp:HiddenField ID="Area" runat="server" Value=""/>
         <asp:HiddenField ID="Population" runat="server" Value=""/>
@@ -21,7 +21,6 @@
             class="mw-90"
             data-toggle="table"
             data-search="true"
-            
             data-pagination="true"
             >
             <thead>
@@ -38,8 +37,6 @@
                     <th data-field="continent">Continent</th>
                     <th data-align="center" data-halign="left" data-field="action">Action</th>
 
-
-                    
                 </tr>
                                     
             </thead>
@@ -213,12 +210,13 @@
 
             $('#ModalContent_Update').on('click', function () {
 
-                $('#<% =CountryName.ClientID %>').val(rowData[1]);
-                $('#<% =Capital.ClientID %>').val(rowData[2]);
-                $('#<% =Area.ClientID %>').val(rowData[4]);
-                $('#<% =Population.ClientID %>').val(rowData[5]);
-                $('#<% =Languages.ClientID %>').val(rowData[6]);
-                $('#<% =Currency.ClientID %>').val(rowData[7]);
+                $('#<% =CountryCode.ClientID %>').val(rowData[0]);
+                $('#<% =CountryName.ClientID %>').val($('#name').val());
+                $('#<% =Capital.ClientID %>').val($('#capital').val());
+                $('#<% =Area.ClientID %>').val($('#area').val());
+                $('#<% =Population.ClientID %>').val($('#population').val());
+                $('#<% =Languages.ClientID %>').val($('#language').val());
+                $('#<% =Currency.ClientID %>').val($('#currency').val());
 
             })
 
