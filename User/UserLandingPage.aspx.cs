@@ -13,5 +13,19 @@ namespace CountryRoads.User
         {
 
         }
+<<<<<<< Updated upstream
+=======
+
+        protected void Path_MouseOver(object sender, EventArgs e)
+        {
+
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string GetCountry(string name)
+        {
+            return "This is your country: " + name;
+        }
+>>>>>>> Stashed changes
     }
 }
