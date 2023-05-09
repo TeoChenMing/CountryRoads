@@ -38,6 +38,25 @@ namespace CountryRoads.Admin
             
         }
 
+        protected void Update_Click(object sender, EventArgs e)
+        {
+            
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
+            con.Open();
+
+            
+            SqlDataAdapter da = new SqlDataAdapter("select * from country", con);
+
+            dt = new DataTable();
+            da.Fill(dt);
+
+            DataBind();
+
+            Label1.Text = CountryName.Value;
+
+            //DataTable dt = (DataTable)ViewState["dt"];
+        }
+
    
        
     }

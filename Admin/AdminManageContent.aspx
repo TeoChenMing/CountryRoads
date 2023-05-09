@@ -8,9 +8,14 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
     <h2>Manage Content</h2>
-
+    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     <div class="container-fluid">
-                            
+        <asp:HiddenField ID="CountryName" runat="server" Value="YOURMOM"/>  
+        <asp:HiddenField ID="Capital" runat="server" Value=""/>
+        <asp:HiddenField ID="Area" runat="server" Value=""/>
+        <asp:HiddenField ID="Population" runat="server" Value=""/>
+        <asp:HiddenField ID="Languages" runat="server" Value=""/>
+        <asp:HiddenField ID="Currency" runat="server" Value=""/>
         <table
             id="myTable"
             class="mw-90"
@@ -39,9 +44,12 @@
                                     
             </thead>
             <tbody>
-                <%   if (dt != null) { foreach (DataRow row in dt.Rows)  {
+                <%   if (dt != null)
+                    {
+                        foreach (DataRow row in dt.Rows)
+                        {
 
-                            
+
                 %>
                         
                         
@@ -53,7 +61,7 @@
                         </td>
                         <td><img style="width: 50px; height: 30px;" src="<% =row["countryFlag"] %>" alt="Image"></td>
                         <td>
-                            <%--<% =row["countryArea"] %>--%>
+                            
                             <% 
                                 if (row["countryArea"].ToString().Contains("."))
                                 {
@@ -61,11 +69,12 @@
                                     decimal roundedValue = decimal.Round(originalValue, 2);
 
                                     Response.Write(roundedValue.ToString());
-                                } else
+                                }
+                                else
                                 {
                                     Response.Write(row["countryArea"]);
                                 }
-                                
+
 
                              %>
                         </td>
@@ -78,9 +87,16 @@
                     </tr>
                 
                 <% 
-                    } }%>
+                        }
 
-              
+                    }
+                    else
+                    {
+                        Response.Write("<p>NOTIHNG</p>");
+                    }%>
+
+                    
+                    
             </tbody>
         </table>
                   
@@ -94,13 +110,14 @@
     <script>
 
         $('#myTable').on('click', 'tr', function () {
-            
+
             // get the values of the cells in the row
             var rowData = $(this).children('td').map(function () {
                 return $(this).text();
             }).get();
 
-            
+
+
             // set the modal content based on the row data
             $('#myModal .modal-title').text("Edit Country - " + rowData[1]);
             $('#myModal .modal-body').html(
@@ -112,8 +129,11 @@
                 '<label for="name" class="form-label">Name:</label>' +
                 '</div>' +
                 '<div class="col-8">' +
+
                 '<input type="text" class="form-control" id="name" value="' + rowData[1] + '">' +
+
                 '</div>' +
+
                 '</div>' +
                 '<div class="row mb-3">' +
                 '<div class="col-3">' +
@@ -188,10 +208,21 @@
                 '<input type="text" class="form-control" id="continent" value="' + rowData[9] + '" disabled >' +
                 '</div>' +
                 '</div>' +
-                '</div>' 
+                '</div>'
             );
 
-            
+            $('#ModalContent_Update').on('click', function () {
+
+                $('#<% =CountryName.ClientID %>').val(rowData[1]);
+                $('#<% =Capital.ClientID %>').val(rowData[2]);
+                $('#<% =Area.ClientID %>').val(rowData[4]);
+                $('#<% =Population.ClientID %>').val(rowData[5]);
+                $('#<% =Languages.ClientID %>').val(rowData[6]);
+                $('#<% =Currency.ClientID %>').val(rowData[7]);
+
+            })
+
+
         });
 
         // event listener for the hidden.bs.modal event
@@ -199,5 +230,28 @@
             // remove the event listener for the shown.bs.modal event
             $(this).off('shown.bs.modal');
         });
+
+
     </script>
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="ModalContent" runat="server">
+    <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+          <div class="modal-dialog modal-dialog-centered modal-lg ">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                
+                    Loading...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <asp:Button ID="Update" type="button" class="btn btn-primary" runat="server" Text="Update" OnClick="Update_Click"/>
+              </div>
+            </div>
+          </div>
+        </div>
 </asp:Content>
