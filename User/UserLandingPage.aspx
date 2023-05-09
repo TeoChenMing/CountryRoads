@@ -1542,7 +1542,6 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <script>
-        var clicked = false;
         document.querySelectorAll(".allPaths").forEach(e => {
             e.addEventListener("mouseover", function () {
                 window.onmousemove = function (j) {
@@ -1562,7 +1561,6 @@
                 e.style.fill = "powderblue"
                 
                 document.getElementById("name").style.opacity = 0
-                clicked = false;
             })
 
             e.addEventListener("click", function () {
