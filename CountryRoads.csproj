@@ -164,10 +164,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="addDataIntoTables.aspx" />
     <Content Include="Admin\AdminDashboard.aspx" />
     <Content Include="Admin\AdminLogin.aspx" />
     <Content Include="Admin\AdminManageContent.aspx" />
     <Content Include="Admin\AdminEnquiry.aspx" />
+    <Content Include="Admin\AdminManageUsers.aspx" />
     <Content Include="App_Data\CountryRoadsDB.mdf" />
     <Content Include="App_Data\CountryRoadsDB_log.ldf">
       <DependentUpon>CountryRoadsDB.mdf</DependentUpon>
@@ -265,12 +267,24 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addDataIntoTables.aspx.cs">
+      <DependentUpon>addDataIntoTables.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="addDataIntoTables.aspx.designer.cs">
+      <DependentUpon>addDataIntoTables.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AdminLogin.aspx.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AdminLogin.aspx.designer.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminManageUsers.aspx.cs">
+      <DependentUpon>AdminManageUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminManageUsers.aspx.designer.cs">
+      <DependentUpon>AdminManageUsers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdminPage.Master.cs">
       <DependentUpon>AdminPage.Master</DependentUpon>
