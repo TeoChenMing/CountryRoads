@@ -260,7 +260,6 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="TestAPISimple.aspx" />
-    <Content Include="User\Login.aspx" />
     <Content Include="User\UserCountryList.aspx" />
     <Content Include="User\UserLandingPage.aspx" />
     <Content Include="User\UserLogin.aspx" />
@@ -382,13 +381,6 @@
     </Compile>
     <Compile Include="TestAPISimple.aspx.designer.cs">
       <DependentUpon>TestAPISimple.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="User\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>
