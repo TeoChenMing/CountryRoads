@@ -42,6 +42,33 @@ namespace CountryRoads.User
         protected global::System.Web.UI.WebControls.Label CountryCapitalModal;
 
         /// <summary>
+        /// CountryAreaModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CountryAreaModal;
+
+        /// <summary>
+        /// CountryPopulationModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CountryPopulationModal;
+
+        /// <summary>
+        /// CountryLanguagesModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CountryLanguagesModal;
+
+        /// <summary>
         /// CountryCurrencyModal control.
         /// </summary>
         /// <remarks>

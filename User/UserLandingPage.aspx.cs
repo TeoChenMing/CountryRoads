@@ -60,8 +60,11 @@ namespace CountryRoads.User
 
                     CountryNameModal.InnerText = countryName;
                     CountryFlagImage.ImageUrl = countryFlag;
-                    CountryCurrencyModal.Text = countryCurrency;
                     CountryCapitalModal.Text = countryCapital;
+                    CountryAreaModal.Text = countryArea + " sq km";
+                    CountryPopulationModal.Text = countryPopulation;
+                    CountryLanguagesModal.Text = countryLanguage;
+                    CountryCurrencyModal.Text = countryCurrency;
                     CountryTimeZoneModal.Text = timezoneName;
                     CountryTimeModal.Text = result.ToString();
                 }

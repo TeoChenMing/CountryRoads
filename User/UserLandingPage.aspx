@@ -36,10 +36,10 @@
     <div id="name">
         <p id="namep">Name</p>
     </div>
-    <div style="width: 100%; border: 1px solid black;">
-        <?xml version="1.0" ?>
 
+    <div style="width: 100%; border: 1px solid black; padding: 5% 1rem; margin-bottom: 5%">
         <%--Map--%>
+        <?xml version="1.0" ?>
         <svg id="allSvg" baseProfile="tiny" fill="#ececec" stroke="black" stroke-linecap="round" stroke-linejoin="round" version="1.2" viewBox="0 0 2000 857" xmlns="http://www.w3.org/2000/svg">
 
             <path class="allPaths" d="M1383 261.6l1.5 1.8-2.9 0.8-2.4 1.1-5.9 0.8-5.3 1.3-2.4 2.8 1.9 2.7 1.4 3.2-2 2.7 0.8 2.5-0.9 2.3-5.2-0.2 3.1 4.2-3.1 1.7-1.4 3.8 1.1 3.9-1.8 1.8-2.1-0.6-4 0.9-0.2 1.7-4.1 0-2.3 3.7 0.8 5.4-6.6 2.7-3.9-0.6-0.9 1.4-3.4-0.8-5.3 1-9.6-3.3 3.9-5.8-1.1-4.1-4.3-1.1-1.2-4.1-2.7-5.1 1.6-3.5-2.5-1 0.5-4.7 0.6-8 5.9 2.5 3.9-0.9 0.4-2.9 4-0.9 2.6-2-0.2-5.1 4.2-1.3 0.3-2.2 2.9 1.7 1.6 0.2 3 0 4.3 1.4 1.8 0.7 3.4-2 2.1 1.2 0.9-2.9 3.2 0.1 0.6-0.9-0.2-2.6 1.7-2.2 3.3 1.4-0.1 2 1.7 0.3 0.9 5.4 2.7 2.1 1.5-1.4 2.2-0.6 2.5-2.9 3.8 0.5 5.4 0z" id="Afghanistan">
@@ -1544,6 +1544,36 @@
                             </div>
                         </div>
 
+                        <%--Area--%>
+                        <div class="row" style="margin: 2% 0">
+                            <div class="col-4">
+                                <label>Area Size: </label>
+                            </div>
+                            <div class="col-8">
+                                <asp:Label class="form-control" ID="CountryAreaModal" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+
+                        <%--Population--%>
+                        <div class="row" style="margin: 2% 0">
+                            <div class="col-4">
+                                <label>Population: </label>
+                            </div>
+                            <div class="col-8">
+                                <asp:Label class="form-control" ID="CountryPopulationModal" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+
+                        <%--Languages--%>
+                        <div class="row" style="margin: 2% 0">
+                            <div class="col-4">
+                                <label>Languages used: </label>
+                            </div>
+                            <div class="col-8">
+                                <asp:Label class="form-control" ID="CountryLanguagesModal" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+
                         <%--Currency--%>
                         <div class="row" style="margin: 2% 0">
                             <div class="col-4">
@@ -1553,6 +1583,7 @@
                                 <asp:Label class="form-control" ID="CountryCurrencyModal" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
+
                         <hr />
 
                         <%--TimeZone--%>
@@ -1582,6 +1613,36 @@
     </div>
     <%--Modal End--%>
 
+    <div class="my-5">
+        <div class="row">
+            <div class="col-6 d-flex py-5">
+                <div class="my-auto me-auto text-start">
+                    <h1>Discover the world</h1>
+                    <p>Learn about countries all around the world at your own pace with an interactive map</p>
+                </div>
+            </div>
+            <div class="col-6 d-flex">
+                <img style="width: 50%" class="my-auto ms-auto" src="../Assets/Images/imagePlaceholder.png" />
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-6 d-flex">
+                <img style="width: 50%" class="my-auto me-auto" src="../Assets/Images/imagePlaceholder.png" />
+            </div>
+            <div class="col-6 d-flex py-5">
+                <div class="my-auto ms-auto text-end">
+                    <h1>Test your knowledge</h1>
+                    <p>Put your skills to the test with our quizzes about what you've learnt</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <%-- Hidden Elements goes here--%>
     <div hidden>
         <asp:HiddenField runat="server" ID="SendA" Value="" />
@@ -1591,7 +1652,7 @@
 
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="ScriptsPlaceHolder" runat="server">
     <script>
         document.querySelectorAll(".allPaths").forEach(e => {
             e.addEventListener("mouseover", function () {

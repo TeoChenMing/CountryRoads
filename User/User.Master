@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
 
-    <%--Bootstrap CSS--%>
+    <%--Bootstrap Scripts--%>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-
-    <%--Bootstrap JS--%>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css" rel="stylesheet">
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -65,13 +65,105 @@
         </div>
         <%-- World Map Placeholder --%>
 
-        <%-- World Map Placeholder --%>
-        <div style="margin: 0 10%">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-        <%-- World Map Placeholder --%>
+        <!-- Footer -->
+        <footer class="bg-dark text-center text-white">
+            <div class="container p-4 py-5">
+                <!-- Section: Text -->
+                <section class="mb-4">
+                    <h5 class="text-uppercase py-3 text-start">About us</h5>
+                    <p class="font-weight-light text-start">
+                        Our objectives is to provide users flexibility to learn profiles of various countries at their own pace. 
+                                    CountryRoads allows the users to learn and revise their knowledge about different countries at their own pace without being restricted by a tight schedule.
+                                    Besides that, we aim to share free and accessible knowledge on countries worldwide. 
+                                    It helps to equip everyone with knowledge and be able to learn more information about different countries as well as their own regions.
+                    </p>
+                </section>
+                <!-- Section: Text -->
 
+                <!-- Section: Links -->
+                <section>
+                    <div class="row">
+
+                        <!--Navigation Links-->
+                        <div class="col-lg-4 col-md-6 mb-4 mb-md-0 d-flex">
+
+                            <div class="mx-auto ms-auto">
+                                <h5 class="text-uppercase py-3 text-start">Navigation</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li class="my-2 text-start">
+                                        <a href="UserLandingPage.aspx" class="text-white nav-link">Home</a>
+                                    </li>
+                                    <li class="my-2 text-start">
+                                        <a href="#!" class="text-white nav-link">Country Lists</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                        <!--Navigation Links-->
+
+                        <!--Account Links-->
+                        <div class="col-lg-4 col-md-6 mb-4 mb-md-0 d-flex">
+                            <div class="mx-auto ms-auto">
+                                <h5 class="text-uppercase py-3 text-start">Account</h5>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="my-2 text-start">
+                                        <a href="#!" class="text-white nav-link">Register</a>
+                                    </li>
+                                    <li class="my-2 text-start">
+                                        <a href="#!" class="text-white nav-link">User Login</a>
+                                    </li>
+                                    <li class="my-2 text-start">
+                                        <a href="#!" class="text-white nav-link">Admin Login</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Account Links-->
+
+                        <!--Support Links-->
+                        <div class="col-lg-4 col-md-6 mb-4 mb-md-0 d-flex">
+
+                            <div class="mx-auto ms-auto">
+                                <h5 class="text-uppercase py-3 text-start">Support</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li class="my-2 text-start">
+                                        <a href="#!" class="text-white nav-link">Contact Admin</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <!--Support Links-->
+
+                    </div>
+                </section>
+                <!-- Section: Links -->
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                <span>© 2023 Copyright: </span>
+                <a class="text-white" href="https://mdbootstrap.com/">CountryRoads</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+
+        <%-- Scripts Placeholder --%>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+
+        <asp:ContentPlaceHolder ID="ScriptsPlaceHolder" runat="server">
+        </asp:ContentPlaceHolder>
+        <%-- Scripts Placeholder --%>
     </form>
 </body>
 </html>
