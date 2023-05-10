@@ -53,10 +53,7 @@
                         }
 
                     }
-                    else
-                    {
-                        Response.Write("<p>NOTIHNG</p>");
-                    }%>
+                    %>
 
                     
                     
