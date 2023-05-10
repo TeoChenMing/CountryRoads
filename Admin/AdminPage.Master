@@ -39,7 +39,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-body-emphasis">
+                                <a href="AdminManageUsers" class="nav-link link-body-emphasis">
                                 <i class="bi bi-people"></i>
                                 Users
                                 </a>

@@ -164,10 +164,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="addDataIntoTables.aspx" />
     <Content Include="Admin\AdminDashboard.aspx" />
     <Content Include="Admin\AdminLogin.aspx" />
     <Content Include="Admin\AdminManageContent.aspx" />
     <Content Include="Admin\AdminEnquiry.aspx" />
+    <Content Include="Admin\AdminManageUsers.aspx" />
     <Content Include="App_Data\CountryRoadsDB.mdf" />
     <Content Include="App_Data\CountryRoadsDB_log.ldf">
       <DependentUpon>CountryRoadsDB.mdf</DependentUpon>
@@ -197,8 +199,8 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Login.aspx" />
-    <Content Include="Register.aspx" />
+    <Content Include="LoginBeta.aspx" />
+    <Content Include="RegisterBeta.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -257,21 +259,34 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="TestAPISimple.aspx" />
-    <Content Include="User\UserLandingPage.aspx" />
     <Content Include="User\Login.aspx" />
-    <Content Include="User\UserCountryList.aspx" />
+    <Content Include="User\UserLandingPage.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addDataIntoTables.aspx.cs">
+      <DependentUpon>addDataIntoTables.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addDataIntoTables.aspx.designer.cs">
+      <DependentUpon>addDataIntoTables.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AdminLogin.aspx.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AdminLogin.aspx.designer.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminManageUsers.aspx.cs">
+      <DependentUpon>AdminManageUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminManageUsers.aspx.designer.cs">
+      <DependentUpon>AdminManageUsers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdminPage.Master.cs">
       <DependentUpon>AdminPage.Master</DependentUpon>
@@ -328,20 +343,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="LoginBeta.aspx.cs">
+      <DependentUpon>LoginBeta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="LoginBeta.aspx.designer.cs">
+      <DependentUpon>LoginBeta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
+    <Compile Include="RegisterBeta.aspx.cs">
+      <DependentUpon>RegisterBeta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
+    <Compile Include="RegisterBeta.aspx.designer.cs">
+      <DependentUpon>RegisterBeta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -365,6 +380,13 @@
     <Compile Include="TestAPISimple.aspx.designer.cs">
       <DependentUpon>TestAPISimple.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User\User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -378,20 +400,6 @@
     </Compile>
     <Compile Include="User\UserLandingPage.aspx.designer.cs">
       <DependentUpon>UserLandingPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="User\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="User\UserCountryList.aspx.cs">
-      <DependentUpon>UserCountryList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User\UserCountryList.aspx.designer.cs">
-      <DependentUpon>UserCountryList.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
