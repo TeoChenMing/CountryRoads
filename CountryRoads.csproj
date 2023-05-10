@@ -269,6 +269,7 @@
   <ItemGroup>
     <Compile Include="addDataIntoTables.aspx.cs">
       <DependentUpon>addDataIntoTables.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="addDataIntoTables.aspx.designer.cs">
       <DependentUpon>addDataIntoTables.aspx</DependentUpon>
@@ -282,6 +283,7 @@
     </Compile>
     <Compile Include="Admin\AdminManageUsers.aspx.cs">
       <DependentUpon>AdminManageUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AdminManageUsers.aspx.designer.cs">
       <DependentUpon>AdminManageUsers.aspx</DependentUpon>
