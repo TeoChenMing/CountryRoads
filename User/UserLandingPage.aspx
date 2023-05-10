@@ -1550,7 +1550,28 @@
                                 <label>Currency Used: </label>
                             </div>
                             <div class="col-8">
-                                <asp:Label class="form-control" ID="CountryCurrencyModel" runat="server" Text=""></asp:Label>
+                                <asp:Label class="form-control" ID="CountryCurrencyModal" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+                        <hr />
+
+                        <%--TimeZone--%>
+                        <div class="row" style="margin: 2% 0">
+                            <div class="col-4">
+                                <label>Time Zone: </label>
+                            </div>
+                            <div class="col-8">
+                                <asp:Label class="form-control" ID="CountryTimeZoneModal" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+
+                        <%--Current Time--%>
+                        <div class="row" style="margin: 2% 0">
+                            <div class="col-4">
+                                <label>Current Time: </label>
+                            </div>
+                            <div class="col-8">
+                                <asp:Label class="form-control" ID="CountryTimeModal" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
 

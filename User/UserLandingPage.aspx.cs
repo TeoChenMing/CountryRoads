@@ -8,6 +8,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlTypes;
+using NodaTime;
+using TimeZoneNames;
+using System.Security.Policy;
+
 
 namespace CountryRoads.User
 {
@@ -38,26 +42,37 @@ namespace CountryRoads.User
                 while (dr.Read())
                 {
                     string countryName = dr["countryName"].ToString().Trim();
-                    string countryCapital = dr["countryCapital"].ToString().Trim();
-                    string countryCurrency = dr["countryCurrency"].ToString().Trim();
                     string countryFlag = dr["countryFlag"].ToString().Trim();
+                    string countryCapital = dr["countryCapital"].ToString().Trim();
+                    string countryArea = dr["countryArea"].ToString().Trim();
+                    string countryPopulation = dr["countryPopulation"].ToString().Trim();
+                    string countryLanguage = dr["countryLanguage"].ToString().Trim();
+                    string countryTimezone = dr["countryTimeZone"].ToString().Trim();
+                    string countryCurrency = dr["countryCurrency"].ToString().Trim();
+
+                    DateTimeZone timezone = DateTimeZoneProviders.Tzdb[countryTimezone];    
+                    string timezoneName = TZNames.GetDisplayNameForTimeZone(timezone.Id, "en-US");
+                    DateTime utcTime = DateTime.UtcNow;
+
+                    var instant = Instant.FromDateTimeUtc(DateTime.SpecifyKind(utcTime, DateTimeKind.Utc));
+                    var result = instant.InZone(timezone).ToDateTimeUnspecified();
+
 
                     CountryNameModal.InnerText = countryName;
                     CountryFlagImage.ImageUrl = countryFlag;
-                    CountryCurrencyModel.Text = countryCurrency;
+                    CountryCurrencyModal.Text = countryCurrency;
                     CountryCapitalModal.Text = countryCapital;
-
-
+                    CountryTimeZoneModal.Text = timezoneName;
+                    CountryTimeModal.Text = result.ToString();
                 }
 
-                
+
 
                 // Call Javascript function openModal()
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Call my function", "openModal()", true);
             }
             else
             {
-                CountryCurrencyModel.Text = "N/A";
                 return;
             }
         }

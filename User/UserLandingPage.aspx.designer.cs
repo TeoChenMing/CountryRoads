@@ -42,13 +42,31 @@ namespace CountryRoads.User
         protected global::System.Web.UI.WebControls.Label CountryCapitalModal;
 
         /// <summary>
-        /// CountryCurrencyModel control.
+        /// CountryCurrencyModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CountryCurrencyModel;
+        protected global::System.Web.UI.WebControls.Label CountryCurrencyModal;
+
+        /// <summary>
+        /// CountryTimeZoneModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CountryTimeZoneModal;
+
+        /// <summary>
+        /// CountryTimeModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CountryTimeModal;
 
         /// <summary>
         /// SendA control.
