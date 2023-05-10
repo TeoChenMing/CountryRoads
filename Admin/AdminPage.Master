@@ -56,6 +56,12 @@
                                 Question
                                 </a>
                             </li>
+                            <li>
+                                <a href="AdminEnquiry" class="nav-link link-body-emphasis">
+                                <i class="bi bi-megaphone"></i>
+                                Enquiries
+                                </a>
+                            </li>
                         </ul>
                         <hr>
                         
