@@ -167,6 +167,7 @@
     <Content Include="Admin\AdminDashboard.aspx" />
     <Content Include="Admin\AdminLogin.aspx" />
     <Content Include="Admin\AdminManageContent.aspx" />
+    <Content Include="Admin\AdminEnquiry.aspx" />
     <Content Include="App_Data\CountryRoadsDB.mdf" />
     <Content Include="App_Data\CountryRoadsDB_log.ldf">
       <DependentUpon>CountryRoadsDB.mdf</DependentUpon>
@@ -289,6 +290,13 @@
     </Compile>
     <Compile Include="Admin\AdminManageContent.aspx.designer.cs">
       <DependentUpon>AdminManageContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminEnquiry.aspx.cs">
+      <DependentUpon>AdminEnquiry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminEnquiry.aspx.designer.cs">
+      <DependentUpon>AdminEnquiry.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
