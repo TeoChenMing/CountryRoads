@@ -259,6 +259,7 @@
     <Content Include="TestAPISimple.aspx" />
     <Content Include="User\UserLandingPage.aspx" />
     <Content Include="User\Login.aspx" />
+    <Content Include="User\UserCountryList.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -384,6 +385,13 @@
     </Compile>
     <Compile Include="User\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserCountryList.aspx.cs">
+      <DependentUpon>UserCountryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\UserCountryList.aspx.designer.cs">
+      <DependentUpon>UserCountryList.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
