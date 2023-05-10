@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace CountryRoads.User
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class WebForm2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,44 +21,33 @@ namespace CountryRoads.User
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select count(*) from users where username = '" + username.Text + "'and password = '" + password.Text + "'", con);
+            SqlCommand cmd = new SqlCommand("SELECT count(*) FROM users WHERE username = '" + usernameInput.Text + "'and password = '" + passwordInput.Text + "'", con);
 
             int count = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
             if (count > 0)
             {
-                SqlCommand cmdType = new SqlCommand("select status from users where username = '" + username.Text + "'", con);
+                SqlCommand cmdType = new SqlCommand("SELECT status, username, fullName FROM users WHERE username = '" + usernameInput.Text + "'", con);
                 SqlDataReader dr = cmdType.ExecuteReader();
 
+                string username = "";
                 string status = "";
 
-                while(dr.Read())
+                while (dr.Read())
                 {
+                    username = dr["username"].ToString();
                     status = dr["status"].ToString().Trim();
                 }
 
-                if (status == "Banned")
+                if (status.Equals("Banned"))
                 {
-
                     ErrorMsg.Text = "You have been banned LMAO GET REKT :c";
                     return;
-
                 }
 
-                string name = "";
-
-                /*while (dr.Read())
-                {
-
-                    name = dr["username"].ToString().Trim();
-                }*/
-
-                //Session["userName"] = name;
-
-
+                Session["userName"] = username;
                 Response.Redirect("UserLandingPage.aspx");
             }
-
 
             else
             {

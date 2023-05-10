@@ -16,27 +16,25 @@ namespace CountryRoads.User
         {
             if (Session["userName"] != null)
             {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
-                con.Open();
-
-                //if (!Page.IsPostBack)
-                //{
-                SqlDataAdapter da = new SqlDataAdapter("select * from country", con);
-
-                //dt = new DataTable();
-                //da.Fill(dt);
-
-                DataBind();
-
-
-                //}
+                LoginButton.Visible = false;
+                UserProfileButton.Text = "Good day " + Session["userName"];
             }
             else
             {
                 LogoutButton.Visible = false;
                 UserProfileButton.Visible = false;
-                
             }
+        }
+
+        protected void LoginButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/User/UserLogin.aspx");
+        }
+
+        protected void LogoutButton_Click(object sender, EventArgs e)
+        {
+            Session.Remove("userName");
+            Response.Redirect("~/User/UserLandingPage.aspx");
         }
     }
 }

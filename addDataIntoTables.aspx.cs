@@ -43,9 +43,8 @@ namespace CountryRoads
 
                 con.Close();
             }
-            catch (Exception ex)
-            {
-                
+            catch 
+            {                
             }
         }
 
