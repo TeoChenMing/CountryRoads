@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="pb-5">
-                        <a id="registration" href="#">Not a member yet? Register for a free account!</a>
+                        <a id="registration" href="UserRegister.aspx">Not a member yet? Register for a free account!</a>
                     </div>
                 </div>
 
