@@ -1008,7 +1008,7 @@
                 </path>
             </g>
 
-            <g class="allPaths" id="Faeroe Islands">
+            <g class="allPaths" id="Faroe Islands">
                 <path
                     d="M 955.6 112 956 112.2 956.3 112.2 956.4 112.4 956.4 112.8 956.6 113.1 956.5 113.3 955.9 112.9 955.7 112.5 955.5 112.3 955.3 112 955.6 112 Z">
                 </path>
