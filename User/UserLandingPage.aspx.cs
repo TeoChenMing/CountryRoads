@@ -20,7 +20,10 @@ namespace CountryRoads.User
         protected DataTable dt;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["countryId"] != null)
+            {
+                Session.Remove("countryId");
+            }
         }
 
         protected void CountryButton_Click(object sender, EventArgs e)
@@ -41,6 +44,7 @@ namespace CountryRoads.User
 
                 while (dr.Read())
                 {
+                    string countryId = dr["countryId"].ToString().Trim();
                     string countryName = dr["countryName"].ToString().Trim();
                     string countryFlag = dr["countryFlag"].ToString().Trim();
                     string countryCapital = dr["countryCapital"].ToString().Trim();
@@ -57,7 +61,7 @@ namespace CountryRoads.User
                     var instant = Instant.FromDateTimeUtc(DateTime.SpecifyKind(utcTime, DateTimeKind.Utc));
                     var result = instant.InZone(timezone).ToDateTimeUnspecified();
 
-
+                    Session["countryID"] = countryId;
                     CountryNameModal.InnerText = countryName;
                     CountryFlagImage.ImageUrl = countryFlag;
                     CountryCapitalModal.Text = countryCapital;

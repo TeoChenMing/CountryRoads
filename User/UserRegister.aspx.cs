@@ -64,7 +64,7 @@ namespace CountryRoads.User
                 con.Close();
             }
 
-            catch (Exception ex)
+            catch
             {
                 ErrorMsg.Visible = true;
                 ErrorMsg.Text = "Registration not successful!";

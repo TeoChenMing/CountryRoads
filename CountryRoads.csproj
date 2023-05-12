@@ -174,6 +174,7 @@
     <Content Include="App_Data\CountryRoadsDB_log.ldf">
       <DependentUpon>CountryRoadsDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Assets\Images\flag.jpg" />
     <Content Include="Assets\Images\globe.gif" />
     <Content Include="Assets\Images\imagePlaceholder.png" />
     <Content Include="Assets\Images\loginGlobe.gif" />

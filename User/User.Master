@@ -34,12 +34,12 @@
                 </button>
 
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav px-5 me-auto" >
+                    <ul class="navbar-nav px-5 me-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="UserLandingPage.aspx">Home</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Country List</a>
+                            <a class="nav-link" href="UserCountryList.aspx">Country List</a>
                         </li>
                     </ul>
 
@@ -58,12 +58,10 @@
             </nav>
         </div>
 
-        <%-- World Map Placeholder --%>
-        <div class="mt-2" style="margin: 0 10%">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-        <%-- World Map Placeholder --%>
+        <%-- Content Placeholder --%>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <%-- Content Placeholder --%>
 
         <!-- Footer -->
         <footer class="bg-dark text-center text-white">
@@ -72,10 +70,8 @@
                 <section class="mb-4">
                     <h5 class="text-uppercase py-3 text-start">About us</h5>
                     <p class="font-weight-light text-start">
-                        Our objectives is to provide users flexibility to learn profiles of various countries at their own pace. 
-                                    CountryRoads allows the users to learn and revise their knowledge about different countries at their own pace without being restricted by a tight schedule.
-                                    Besides that, we aim to share free and accessible knowledge on countries worldwide. 
-                                    It helps to equip everyone with knowledge and be able to learn more information about different countries as well as their own regions.
+                        Our objectives is to provide users flexibility to learn profiles of various countries at their own pace.                        CountryRoads allows the users to learn and revise their knowledge about different countries at their own pace without being restricted by tight schedule. 
+                        Besides that, we aim to share free and accessible knowledge on countries worldwide. It helps to equip everyone with knowledge and be able to learn more information about different countries as well as their own regions.
                     </p>
                 </section>
                 <!-- Section: Text -->
@@ -95,7 +91,7 @@
                                         <a href="UserLandingPage.aspx" class="text-white nav-link">Home</a>
                                     </li>
                                     <li class="my-2 text-start">
-                                        <a href="#!" class="text-white nav-link">Country Lists</a>
+                                        <a href="UserCountryList.aspx" class="text-white nav-link">Country Lists</a>
                                     </li>
 
                                 </ul>
@@ -110,7 +106,7 @@
                                 <h5 class="text-uppercase py-3 text-start">Account</h5>
                                 <ul class="list-unstyled mb-0">
                                     <li class="my-2 text-start">
-                                        <a href="#!" class="text-white nav-link">Register</a>
+                                        <a href="UserRegister.aspx" class="text-white nav-link">Register</a>
                                     </li>
                                     <li class="my-2 text-start">
                                         <a href="UserLogin.aspx" class="text-white nav-link">User Login</a>
