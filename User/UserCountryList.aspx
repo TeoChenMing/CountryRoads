@@ -10,8 +10,16 @@
 
             #countryList li {
                 margin: 1rem;
+                padding: 0 1rem;
                 width: 150px;
+                border-radius: 8px;
+                transition: all 300ms ease;
             }
+
+                #countryList li:hover {
+                    transform: scale(1.05);
+                    background-color: rgba(0,0,0,0.1)
+                }
 
         #countryListBody {
             max-height: 100vh;
@@ -20,6 +28,29 @@
             #countryListBody .nav-link.active {
                 background-color: grey
             }
+
+        .bg-body-tertiary {
+            background-color: rgb(32, 64, 104) !important;
+        }
+
+        #continents .nav-item {
+            padding: 0 1rem;
+            border-radius: 8px;
+        }
+
+        #continents .nav-item a {
+            color: white !important;
+            transition: all 300ms ease;
+        }
+
+        #continents .nav-item .active {
+            background-color: royalblue !important;
+        }
+
+        #continents .nav-item a:hover:not(.active) {
+            transform: scale(1.05);
+            background-color: rgba(65,105,225, 0.5);
+        }
     </style>
     <%@ Import Namespace="System.Data" %>
 </asp:Content>
@@ -31,30 +62,30 @@
 
                 <div class="d-flex flex-column bg-body-tertiary sidebar vh-100">
 
-                    <ul class="nav nav-pills flex-column mb-auto">
+                    <ul id="continents" class="nav nav-pills flex-column mb-auto">
                         <li class="mt-3 mb-2">
-                            <h1 class="mt-2 mb-0 ps-3">Continents</h1>
+                            <h1 class="mt-2 mb-0 ps-3 text-white">Continents</h1>
                             <hr />
                         </li>
-                        <li class="nav-item my-2 px-4">
+                        <li class="nav-item my-2 px-4 text-white">
                             <a href="#" class="nav-link link-body-emphasis continentList">Africa</a>
                         </li>
-                        <li class="nav-item my-2 px-4">
+                        <li class="nav-item my-2 px-4 text-white">
                             <a href="#" class="nav-link link-body-emphasis continentList">Antarctica</a>
                         </li>
-                        <li class="nav-item my-2 px-4">
+                        <li class="nav-item my-2 px-4 text-white">
                             <a href="#" class="nav-link link-body-emphasis continentList">Asia</a>
                         </li>
-                        <li class="nav-item my-2 px-4">
+                        <li class="nav-item my-2 px-4 text-white">
                             <a href="#" class="nav-link link-body-emphasis continentList">Europe</a>
                         </li>
-                        <li class="nav-item my-2 px-4">
+                        <li class="nav-item my-2 px-4 text-white">
                             <a href="#" class="nav-link link-body-emphasis continentList">North America</a>
                         </li>
-                        <li class="nav-item my-2 px-4">
+                        <li class="nav-item my-2 px-4 text-white">
                             <a href="#" class="nav-link link-body-emphasis continentList">Oceania</a>
                         </li>
-                        <li class="nav-item my-2 px-4">
+                        <li class="nav-item my-2 px-4 text-white">
                             <a href="#" class="nav-link link-body-emphasis continentList">South America</a>
                         </li>
                     </ul>
@@ -96,7 +127,6 @@
                 <asp:Button ID="CountryDetailsButton" runat="server" OnClick="CountryDetailsButton_Click" />
             </div>
             <%--Hidden elements goes here--%>
-        
         </div>
     </div>
 

@@ -30,6 +30,18 @@ namespace CountryRoads.User
             if (count == 1)
             {
                 getCountryData();
+                if (Session["userName"] != null)
+                {
+                    cmd = new SqlCommand("SELECT * FROM users WHERE username = '" + Session["userName"] + "'", con);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    // create record in a table called users
+
+                    while (dr.Read())
+                    {
+                        var userid = dr["userId"].ToString().Trim();
+                        checkUser(userid);
+                    }
+                }
             }
             else
             {
@@ -84,9 +96,9 @@ namespace CountryRoads.User
                 CountryPopulation.Text = double.Parse(countryPopulation).ToString("N0");
                 CountryLanguages.Text = countryLanguage;
                 CountryCurrency.Text = countryCurrency;
-                CountryTimeZone.Text = timezoneName;
-                CountryTime.Text = result.ToString();
-
+                CountryTimeZone.Text = countryTimezone;
+                CountryTimeZoneName.Text = timezoneName;
+                CountryTime.Text = $"({result.ToString()})";
 
                 factCapital.Text = "The capital of " + countryName + " is " + countryCapital + ".";
                 factSize.Text = countryName + " has an area of " + double.Parse(countryArea).ToString("N0") + "km².";
@@ -119,7 +131,7 @@ namespace CountryRoads.User
                     return;
                 }
                 rowNum++;
-                
+
             }
 
             //check for largest country area
@@ -137,7 +149,7 @@ namespace CountryRoads.User
                     return;
                 }
                 rowNum++;
-                
+
             }
         }
 
@@ -176,7 +188,7 @@ namespace CountryRoads.User
             {
                 if (row["countryId"].ToString().Equals(countryId))
                 {
-                    factPopulation.Text = row["countryName"] + " has a population of" + population + " people which is ranked " + rowNum + " lowest in the world.";
+                    factPopulation.Text = row["countryName"] + " has a population of " + population + " people which is ranked " + rowNum + " lowest in the world.";
                     return;
                 }
                 rowNum++;
@@ -203,6 +215,26 @@ namespace CountryRoads.User
                 factLanguage.Text = countryName + " is a multilingual country which mainly uses " + languagelist[0].ToString() + ", " + languagelist[1].ToString() + ", " + languagelist[2].ToString() + " and more.";
                 return;
             }
+        }
+
+        protected void checkUser(string userId)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM userView WHERE userId = '" + userId + "' AND countryId = '" + Session["countryId"] + "'", con);
+            int count = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+            if (count == 0)
+            {
+                string query1 = "INSERT INTO userView VALUES (@userId, @countryId)";
+                SqlCommand cmd1 = new SqlCommand(query1, con);
+                cmd1.Parameters.AddWithValue("@userId", userId);
+                cmd1.Parameters.AddWithValue("@countryId", Session["countryId"]);
+
+                cmd1.ExecuteNonQuery();
+                con.Close();
+            }            
         }
     }
 }

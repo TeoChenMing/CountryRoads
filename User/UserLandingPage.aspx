@@ -2,12 +2,17 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
+        body {
+            background: rgb(181,220,255);
+            background: linear-gradient(180deg, rgba(181,220,255,1) 0%, rgba(29,118,253,1) 40%, rgba(33,37,41,1) 70%);
+        }
+
         path {
-            fill: powderblue;
+            fill: rgba(65,105,225, 0.5);
         }
 
             path:hover {
-                fill: aqua;
+                fill: royalblue;
             }
 
         #name {
@@ -31,14 +36,14 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="mt-2" style="margin: 0 10%">
-        <p>Click a country to learn more about it.</p>
+    <div class="my-2 bg-white p-5" style="margin: 0 10%; border-radius: 8px;">
         <%--Floating Text--%>
         <div id="name">
             <p id="namep">Name</p>
         </div>
+        <p>Click a country to learn more about it.</p>
 
-        <div style="width: 100%; border: 1px solid black; padding: 5% 1rem; margin-bottom: 5%">
+        <div class="w-100" style="border: 3px solid black; padding: 5% 1rem; margin-bottom: 5%">
             <%--Map--%>
             <?xml version="1.0" ?>
             <svg id="allSvg" baseProfile="tiny" fill="#ececec" stroke="black" stroke-linecap="round" stroke-linejoin="round" version="1.2" viewBox="0 0 2000 857" xmlns="http://www.w3.org/2000/svg">
@@ -1561,7 +1566,7 @@
 
             <div class="row">
                 <div class="col-6 d-flex">
-                    <img style="width: 50%" class="my-auto me-auto" src="../Assets/Images/kurukuru.gif" />
+                    <img style="width: 50%" class="my-auto me-auto" src="../Assets/Images/teded.png" />
                 </div>
                 <div class="col-6 d-flex py-5">
                     <div class="my-auto ms-auto text-end">
@@ -1595,14 +1600,14 @@
                     document.getElementById('name').style.left = x + 10 + 'px'
                 }
 
-                e.style.fill = "aqua"
+                e.style.fill = "royalblue"
                 document.getElementById("name").style.opacity = 1
                 document.getElementById("namep").innerText = e.id
 
             })
             e.addEventListener("mouseleave", function () {
 
-                e.style.fill = "powderblue"
+                e.style.fill = "rgba(65,105,225, 0.5)"
 
                 document.getElementById("name").style.opacity = 0
             })

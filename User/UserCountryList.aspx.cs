@@ -22,7 +22,6 @@ namespace CountryRoads.User
 
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM country WHERE continent LIKE '%"+SelectedContinent.Value+"%' ORDER BY countryName ASC", con);
 
-
             dt = new DataTable();
             da.Fill(dt);
 

@@ -24,7 +24,10 @@
         <div>
             <div class="mt-5 d-flex">
                 <h1 runat="server" class="col-6" id="CountryName"></h1>
-                <asp:Label class="col-6 my-auto text-end" ID="CountryTime" runat="server" Text=""></asp:Label>
+                <div class="col-6 my-auto text-end">
+                    <asp:Label ID="CountryTimeZoneName" runat="server" Text=""></asp:Label>
+                    <asp:Label ID="CountryTime" runat="server" Text=""></asp:Label>
+                </div>
             </div>
             <hr />
             <div class="row my-5">
