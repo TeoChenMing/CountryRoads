@@ -15,9 +15,14 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btn_clearUsers" runat="server" Text="Clear Users" OnClick="btn_clearUsers_Click" />
             <br />
-            <asp:Button ID="btn_addToQuestions" runat="server" Text="Add Ques" OnClick="btn_addToQuestions_Click" />
+            <asp:Button ID="btn_addToQuestions" runat="server" Text="Add Ques" OnClick="Btn_addToQuestions_Click" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btn_clearQuestions" runat="server" Text="Clear Ques" OnClick="btn_clearQuestions_Click" />
+
+            <br />
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            <br />
+            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
         </div>
     </form>
 </body>
