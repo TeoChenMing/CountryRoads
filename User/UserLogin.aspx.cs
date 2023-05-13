@@ -13,7 +13,10 @@ namespace CountryRoads.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["userName"] != null)
+            {
+                Response.Redirect("~/User/UserLandingPage.aspx");
+            }
         }
 
         protected void Login_Click(object sender, EventArgs e)

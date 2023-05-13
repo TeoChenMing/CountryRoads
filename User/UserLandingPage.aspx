@@ -1529,89 +1529,19 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div style="margin: 5% 0" class="row">
-                            <asp:Image class="flag" ID="CountryFlagImage" runat="server" />
-                        </div>
-                        <h2>Interesting Facts</h2>
-                        <div style="margin: 5% 0">
-
-                            <%--Capital--%>
-                            <div class="row" style="margin: 2% 0">
-                                <div class="col-4">
-                                    <label>Capital: </label>
-                                </div>
-                                <div class="col-8">
-                                    <asp:Label class="form-control" ID="CountryCapitalModal" runat="server" Text=""></asp:Label>
-                                </div>
-                            </div>
-
-                            <%--Area--%>
-                            <div class="row" style="margin: 2% 0">
-                                <div class="col-4">
-                                    <label>Area Size: </label>
-                                </div>
-                                <div class="col-8">
-                                    <asp:Label class="form-control" ID="CountryAreaModal" runat="server" Text=""></asp:Label>
-                                </div>
-                            </div>
-
-                            <%--Population--%>
-                            <div class="row" style="margin: 2% 0">
-                                <div class="col-4">
-                                    <label>Population: </label>
-                                </div>
-                                <div class="col-8">
-                                    <asp:Label class="form-control" ID="CountryPopulationModal" runat="server" Text=""></asp:Label>
-                                </div>
-                            </div>
-
-                            <%--Languages--%>
-                            <div class="row" style="margin: 2% 0">
-                                <div class="col-4">
-                                    <label>Languages used: </label>
-                                </div>
-                                <div class="col-8">
-                                    <asp:Label class="form-control" ID="CountryLanguagesModal" runat="server" Text=""></asp:Label>
-                                </div>
-                            </div>
-
-                            <%--Currency--%>
-                            <div class="row" style="margin: 2% 0">
-                                <div class="col-4">
-                                    <label>Currency Used: </label>
-                                </div>
-                                <div class="col-8">
-                                    <asp:Label class="form-control" ID="CountryCurrencyModal" runat="server" Text=""></asp:Label>
-                                </div>
-                            </div>
-
+                        <div class="mt-3 row">
+                            <asp:Image class="flag mb-5" ID="CountryFlagImage" runat="server" />
                             <hr />
-
-                            <%--TimeZone--%>
-                            <div class="row" style="margin: 2% 0">
-                                <div class="col-4">
-                                    <label>Time Zone: </label>
-                                </div>
-                                <div class="col-8">
-                                    <asp:Label class="form-control" ID="CountryTimeZoneModal" runat="server" Text=""></asp:Label>
-                                </div>
+                            <div class="d-flex">
+                                <asp:Label class="col-6 my-auto" ID="CountryTimeModal" runat="server" Text=""></asp:Label>
+                                <a href="UserCountryDetails.aspx" class="col-6 m-auto btn btn-primary">View more Details</a>
                             </div>
-
-                            <%--Current Time--%>
-                            <div class="row" style="margin: 2% 0">
-                                <div class="col-4">
-                                    <label>Current Time: </label>
-                                </div>
-                                <div class="col-8">
-                                    <asp:Label class="form-control" ID="CountryTimeModal" runat="server" Text=""></asp:Label>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <%--Modal End--%>
 
         <div class="my-5">
@@ -1623,7 +1553,7 @@
                     </div>
                 </div>
                 <div class="col-6 d-flex">
-                    <img style="width: 50%" class="my-auto ms-auto" src="../Assets/Images/flag.jpg" />
+                    <img class="w-50 my-auto ms-auto" src="../Assets/Images/flag.jpg" />
                 </div>
             </div>
 

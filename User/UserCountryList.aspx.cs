@@ -38,7 +38,7 @@ namespace CountryRoads.User
                 Session["countryId"] = countryId;
             }
 
-            Label1.Text = Session["countryId"] + " is your country";
+            Response.Redirect("UserCountryDetails.aspx");
         }
     }
 }

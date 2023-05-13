@@ -61,16 +61,10 @@ namespace CountryRoads.User
                     var instant = Instant.FromDateTimeUtc(DateTime.SpecifyKind(utcTime, DateTimeKind.Utc));
                     var result = instant.InZone(timezone).ToDateTimeUnspecified();
 
-                    Session["countryID"] = countryId;
+                    Session["countryId"] = countryId;
                     CountryNameModal.InnerText = countryName;
                     CountryFlagImage.ImageUrl = countryFlag;
-                    CountryCapitalModal.Text = countryCapital;
-                    CountryAreaModal.Text = countryArea + " sq km";
-                    CountryPopulationModal.Text = countryPopulation;
-                    CountryLanguagesModal.Text = countryLanguage;
-                    CountryCurrencyModal.Text = countryCurrency;
-                    CountryTimeZoneModal.Text = timezoneName;
-                    CountryTimeModal.Text = result.ToString();
+                    CountryTimeModal.Text = "Local time: " + result.ToString();
                 }
 
 

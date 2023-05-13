@@ -64,7 +64,7 @@
             <section id="content" class="col-10 z-3 mt-4">
 
                 <div class="content">
-                    <h1>Country Lists</h1>
+                    <h1>Countries in <%=SelectedContinent.Value%></h1>
                     <hr />
                     <div class="col-md-12 flex-wrap flex-row flex-wrap justify-start items-start">
                         <ul id="countryList" class="d-flex flex-wrap list-unstyled flex-column">
