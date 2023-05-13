@@ -122,7 +122,7 @@ namespace CountryRoads
                         cmd1.Parameters.AddWithValue("@countryId1", $"{row["countryId"]}");
                         cmd1.Parameters.AddWithValue("@quizType1", "fact");
                         cmd1.Parameters.AddWithValue("@title1", $"What is the capital of {row["countryName"]}?");
-                        SqlDataAdapter capitalDA = new SqlDataAdapter("SELECT TOP 3 * FROM country ORDER BY NEWID()", con);
+                        SqlDataAdapter capitalDA = new SqlDataAdapter("SELECT TOP 3 * FROM country WHERE countryCapital NOT LIKE '%Not Found%' ORDER BY NEWID()", con);
                         tempdt = new DataTable();
                         capitalDA.Fill(tempdt);
 
@@ -212,7 +212,7 @@ namespace CountryRoads
                         cmd4.Parameters.AddWithValue("@countryId4", $"{row["countryId"]}");
                         cmd4.Parameters.AddWithValue("@quizType4", "fact");
                         cmd4.Parameters.AddWithValue("@title4", $"What is the main language used in {row["countryName"]}?");
-                        SqlDataAdapter languageDA = new SqlDataAdapter("SELECT TOP 3 * FROM ( SELECT DISTINCT countryLanguage FROM country ) AS subquery ORDER BY NEWID()", con);
+                        SqlDataAdapter languageDA = new SqlDataAdapter($"SELECT TOP 3 * FROM ( SELECT DISTINCT countryLanguage FROM country WHERE countryLanguage NOT LIKE '%{row["countryLanguage"]}%' OR countryLanguage NOT LIKE '%Not Found%' ) AS subquery ORDER BY NEWID()", con);
                         tempdt = new DataTable();
                         languageDA.Fill(tempdt);
 
@@ -242,7 +242,10 @@ namespace CountryRoads
                         cmd5.Parameters.AddWithValue("@countryId5", $"{row["countryId"]}");
                         cmd5.Parameters.AddWithValue("@quizType5", "fact");
                         cmd5.Parameters.AddWithValue("@title5", $"What is the currency used in {row["countryName"]}?");
-                        SqlDataAdapter currencyDA = new SqlDataAdapter("SELECT TOP 3 * FROM ( SELECT DISTINCT countryCurrency FROM country ) AS subquery ORDER BY NEWID()", con);
+                        string tempstr = $"{row["countryCurrency"]}";
+                        int curIndex = tempstr.IndexOf(",");
+                        string curStart = tempstr.Substring(0, curIndex + 1);
+                        SqlDataAdapter currencyDA = new SqlDataAdapter($"SELECT TOP 3 * FROM ( SELECT DISTINCT countryCurrency FROM country WHERE countryCurrency NOT LIKE '{curStart}%' OR countryCurrency NOT LIKE '%Not Found%' ) AS subquery ORDER BY NEWID()", con);
                         tempdt = new DataTable();
                         currencyDA.Fill(tempdt);
 
@@ -260,7 +263,7 @@ namespace CountryRoads
                         }
 
                         // debugging
-                        // Label1.Text = options;
+                        // Label2.Text = options;
                         // Label2.Text = "No error hurrah";
                         cmd5.Parameters.AddWithValue("@options5", curOptions); // separated by ||
                         cmd5.Parameters.AddWithValue("@answer5", $"{row["countryCurrency"]}");
@@ -272,7 +275,7 @@ namespace CountryRoads
                         cmd6.Parameters.AddWithValue("@countryId6", $"{row["countryId"]}");
                         cmd6.Parameters.AddWithValue("@quizType6", "fact");
                         cmd6.Parameters.AddWithValue("@title6", $"What is the Time Zone adapted by {row["countryName"]}?");
-                        SqlDataAdapter timezoneDA = new SqlDataAdapter("SELECT TOP 3 * FROM ( SELECT DISTINCT countryTimeZone FROM country ) AS subquery ORDER BY NEWID()", con);
+                        SqlDataAdapter timezoneDA = new SqlDataAdapter($"SELECT TOP 3 * FROM ( SELECT DISTINCT countryTimeZone FROM country WHERE countryTimeZone NOT LIKE '%{row["countryTimeZone"]}%' OR countryTimeZone NOT LIKE '%Not Found%' ) AS subquery ORDER BY NEWID()", con);
                         tempdt = new DataTable();
                         timezoneDA.Fill(tempdt);
 
@@ -302,7 +305,7 @@ namespace CountryRoads
                         cmd7.Parameters.AddWithValue("@countryId7", $"{row["countryId"]}");
                         cmd7.Parameters.AddWithValue("@quizType7", "fact");
                         cmd7.Parameters.AddWithValue("@title7", $"Which continent does {row["countryName"]} belong to?");
-                        SqlDataAdapter continentDA = new SqlDataAdapter("SELECT TOP 3 * FROM ( SELECT DISTINCT continent FROM country ) AS subquery ORDER BY NEWID()", con);
+                        SqlDataAdapter continentDA = new SqlDataAdapter($"SELECT TOP 3 * FROM ( SELECT DISTINCT continent FROM country WHERE continent NOT LIKE '%{row["continent"]}%') AS subquery ORDER BY NEWID()", con);
                         tempdt = new DataTable();
                         continentDA.Fill(tempdt);
 
@@ -326,13 +329,30 @@ namespace CountryRoads
                         cmd7.Parameters.AddWithValue("@answer7", $"{row["continent"]}");
 
                         // run and insert all values (IT WORKED)
-                        /*cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                        if ($"{row["countryCapital"]}" != "Not Found")
+                        {
+                            cmd1.ExecuteNonQuery();
+                        }
+                        
                         cmd2.ExecuteNonQuery();
                         cmd3.ExecuteNonQuery();
-                        cmd4.ExecuteNonQuery();
-                        cmd5.ExecuteNonQuery();
-                        cmd6.ExecuteNonQuery();
-                        cmd7.ExecuteNonQuery();*/
+
+                        if ($"{row["countryLanguage"]}" != "Not Found")
+                        {
+                            cmd4.ExecuteNonQuery();
+                        }
+
+                        if ($"{row["countryCurrency"]}" != "Not Found")
+                        {
+                            cmd5.ExecuteNonQuery();
+                        }
+
+                        if ($"{row["countryTimeZone"]}" != "Not Found")
+                        {
+                            cmd6.ExecuteNonQuery();
+                        }
+                        cmd7.ExecuteNonQuery();
                     }
                 }
 
