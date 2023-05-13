@@ -169,6 +169,7 @@
     <Content Include="Admin\AdminLogin.aspx" />
     <Content Include="Admin\AdminManageContent.aspx" />
     <Content Include="Admin\AdminEnquiry.aspx" />
+    <Content Include="Admin\AdminManageQuestions.aspx" />
     <Content Include="Admin\AdminManageUsers.aspx" />
     <Content Include="App_Data\CountryRoadsDB.mdf" />
     <Content Include="App_Data\CountryRoadsDB_log.ldf">
@@ -284,6 +285,13 @@
     </Compile>
     <Compile Include="Admin\AdminLogin.aspx.designer.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminManageQuestions.aspx.cs">
+      <DependentUpon>AdminManageQuestions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminManageQuestions.aspx.designer.cs">
+      <DependentUpon>AdminManageQuestions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdminManageUsers.aspx.cs">
       <DependentUpon>AdminManageUsers.aspx</DependentUpon>

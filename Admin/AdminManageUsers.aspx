@@ -9,7 +9,7 @@
 <%@ Import Namespace="System.Data" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Manage Content</h2>
+    <h2>Manage Users</h2>
 
     <div class="container-fluid">
         <asp:HiddenField ID="UserId" runat="server" Value=""/> 
