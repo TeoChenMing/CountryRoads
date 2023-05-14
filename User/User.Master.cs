@@ -23,6 +23,7 @@ namespace CountryRoads.User
             {
                 LogoutButton.Visible = false;
                 UserProfileButton.Visible = false;
+                QuizzesButton.Visible = false;
             }
         }
 

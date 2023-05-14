@@ -266,6 +266,7 @@
     <Content Include="User\UserLogin.aspx" />
     <Content Include="User\UserRegister.aspx" />
     <Content Include="User\UserCountryDetails.aspx" />
+    <Content Include="User\UserContactAdmin.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -419,6 +420,13 @@
     </Compile>
     <Compile Include="User\UserCountryDetails.aspx.designer.cs">
       <DependentUpon>UserCountryDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserContactAdmin.aspx.cs">
+      <DependentUpon>UserContactAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\UserContactAdmin.aspx.designer.cs">
+      <DependentUpon>UserContactAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
