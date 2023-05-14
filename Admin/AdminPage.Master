@@ -51,7 +51,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-body-emphasis">
+                                <a href="AdminManageQuestions" class="nav-link link-body-emphasis">
                                 <i class="bi bi-question-square"></i>
                                 Question
                                 </a>
