@@ -13,7 +13,7 @@ namespace CountryRoads.Admin
 {
     public partial class AdminManageQuestions : System.Web.UI.Page
     {
-        protected DataTable dt;
+        protected DataTable dt, countryDT;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,6 +26,11 @@ namespace CountryRoads.Admin
 
                 dt = new DataTable();
                 da.Fill(dt);
+
+                SqlDataAdapter countryDA = new SqlDataAdapter("select * from country", con);
+
+                countryDT = new DataTable();
+                countryDA.Fill(countryDT);
 
                 DataBind();
 
@@ -44,7 +49,7 @@ namespace CountryRoads.Admin
             using (var cmd = new SqlCommand("UPDATE questions SET countryId = @countryId, quizType = @quizType, title = @title, " +
                 "options = @options, answer = @answer WHERE questionId = @questionId", con))
             {
-                cmd.Parameters.AddWithValue("@countryCode", questionId.Value);
+                cmd.Parameters.AddWithValue("@questionId", questionId.Value);
                 cmd.Parameters.AddWithValue("@countryId", countryId.Value);
                 cmd.Parameters.AddWithValue("@quizType", quizType.Value);
                 cmd.Parameters.AddWithValue("@title", title.Value);
@@ -75,7 +80,17 @@ namespace CountryRoads.Admin
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
             con.Open();
 
-            
+            using (var cmd = new SqlCommand("INSERT INTO questions VALUES (@countryId, @quizType, @title, @options, @answer)", con))
+            {
+                cmd.Parameters.AddWithValue("@countryId", countryId.Value);
+                cmd.Parameters.AddWithValue("@quizType", "TrueFalse");
+                cmd.Parameters.AddWithValue("@title", title.Value);
+                cmd.Parameters.AddWithValue("@options", "True||False");
+                cmd.Parameters.AddWithValue("@answer", answer.Value);
+
+                cmd.ExecuteNonQuery();
+
+            }
 
             con.Close();
             Response.Redirect(Request.RawUrl);

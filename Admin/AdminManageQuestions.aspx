@@ -137,79 +137,80 @@
 
     <!-- Add New Question Modal -->
     <div class="modal fade" id="AddQuestionModal" tabindex="-1" aria-labelledby="exampleModalLabel2">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Add New Question</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" aria-hidden="true">
-            </button>
-          </div>
-          <div class="modal-body">
-              <div class="row">
-                  <div class="col">
-                      <div class="row mb-3">
-                          <div class="col-3">
-                              <label for="questionId" class="form-label">Select a country:</label>
-                          </div>
-                          <div class="col-7">
-                              <input type="text" class="form-control" id="questionId" value="rowData[0]" disabled>
-                          </div>
-                      </div>
-                      <div class="row mb-3">
-                          <div class="col-3">
-                              <label for="questionId" class="form-label">Question Type:</label>
-                          </div>
-                          <div class="col-7">
-                              <input type="text" class="form-control" id="quizType" value="TrueFalse" disabled>
-                          </div>
-                      </div>
-                      <div class="row mb-3">
-                          <div class="col-3">
-                              <label for="questionId" class="form-label">Question ID:</label>
-                          </div>
-                          <div class="col-7">
-                              <input type="text" class="form-control" id="questionId" value="rowData[0]" disabled>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <asp:Button ID="AddQuestion" runat="server" class="btn btn-success" Text="Add Question" OnClick="AddQuestion_Click"></asp:Button>
-          </div>
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Question</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" aria-hidden="true">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row mb-3">
+                                <div class="col-3">
+                                    <label for="addCountryId" class="form-label">Select a country:</label>
+                                </div>
+                                <div class="col-7">
+                                    <select id="addCountryId" class="form-select" aria-label="Default select example">
+                                        <%   if (countryDT != null)
+                                            {
+                                                foreach (DataRow row in countryDT.Rows)
+                                                {
+                                        %>
+                                        <option value="<%=row["countryId"] %>"><%=row["countryId"]%>, <%=row["countryName"]%></option>
+                                        <%
+                                                }
+                                            }
+                                        %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-3">
+                                    <label for="addQuizType" class="form-label">Question Type:</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control" id="addQuizType" value="TrueFalse" disabled>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-3">
+                                    <label for="addTitle" class="form-label">Title:</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control" id="addTitle" value="" required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-3">
+                                    <label for="addAnswer" class="form-label">Answer:</label>
+                                </div>
+                                <div class="col-7">
+                                    <select id="addAnswer" class="form-select" aria-label="Default select example">
+                                        <option value="True" selected>True</option>
+                                        <option value="False">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <asp:Button ID="AddQuestion" runat="server" class="btn btn-success" Text="Add Question" OnClick="AddQuestion_Click"></asp:Button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="jsscript" runat="server">
      <script>
-         $('#addQuesBtn').on('click', function () {
-             $('#AddQuestionModal .modal-body').html(
-                 '<div class="row">' +
-                 '<div class="col">' +
-                     '<div class="row mb-3">' +
-                         '<div class="col-3">' +
-                            '<label for="countryId" class="form-label">Select a country:</label>' +
-                         '</div>' +
-                         '<div class="col-7">' +
-                            '<input type="text" class="form-control" id="countryId" value="">' +
-                         '</div>' +
-                     '</div>' +
-                     '<div class="row mb-3">' +
-                         '<div class="col-3">' +
-                            '<label for="quizType" class="form-label">Question Type:</label>' +
-                         '</div>' +
-                         '<div class="col-7">' +
-                            '<input type="text" class="form-control" id="quizType" value="TrueFalse" disabled>' +
-                         '</div>' +
-                     '</div>' +
-                 '</div>' +
-                 '</div>'
-             );
-         });
 
          $('#myTable').on('click', 'tr', function () {
 
@@ -305,11 +306,11 @@
 
          $('#ModalContent_AddQuestion').on('click', function () {
 
-             $('#<% =countryId.ClientID %>').val($('#countryId').val());
-             $('#<% =quizType.ClientID %>').val($('#quizType').val());
-             $('#<% =title.ClientID %>').val($('#title').val());
-             $('#<% =options.ClientID %>').val($('#options').val());
-             $('#<% =answer.ClientID %>').val($('#answer').val());
+             $('#<% =countryId.ClientID %>').val($('#addCountryId').val());
+             $('#<% =quizType.ClientID %>').val($('#addQuizType').val());
+             $('#<% =title.ClientID %>').val($('#addTitle').val());
+             $('#<% =options.ClientID %>').val($('#addOptions').val());
+             $('#<% =answer.ClientID %>').val($('#addAnswer').val());
 
          })
 
