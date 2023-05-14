@@ -17,21 +17,53 @@
             border: solid 2px black;
             padding: 0;
         }
+
+        .bi-star {
+            color: black;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="mt-2" style="margin: 0 10%">
         <div>
+            <asp:Button ID="BackButton" runat="server" Text="Back to Previous Page" class="btn btn-light" OnClick="BackButton_Click" />
             <div class="mt-5 d-flex">
-                <h1 runat="server" class="col-6" id="CountryName"></h1>
+                <div class="col-6 d-flex">
+                    <h1 runat="server" id="CountryName"></h1>
+                </div>
                 <div class="col-6 my-auto text-end">
                     <asp:Label ID="CountryTimeZoneName" runat="server" Text=""></asp:Label>
                     <asp:Label ID="CountryTime" runat="server" Text=""></asp:Label>
                 </div>
             </div>
             <hr />
-            <div class="row my-5">
+            <div class="row mt-5">
+                <% if (Session["userName"] != null)
+                    {
+                %>
+                <asp:LinkButton ID="BookmarkButton" runat="server" CssClass="mb-3" OnClick="BookmarkButton_Click">
+                    <%
+                        if (isBookmarked == true)
+                        {
+                    %>
+                    <i class="bi bi-star-fill" style="font-size: x-large;"></i>
+                    <span>Added to Bookmarks</span>
+                    <%
+                        }
+                        else
+                        {
+                    %>
+                    <i class="bi bi-star" style="font-size: x-large;"></i>
+                    <span>Add to Bookmarks</span>
+                    <%
+                        }
+                    %>
+                </asp:LinkButton>
+                <%
+                    }
+                %>
                 <div class="col-6">
+
                     <asp:Image class="flag" ID="CountryFlag" runat="server" />
                 </div>
                 <div class="col-6 px-5">

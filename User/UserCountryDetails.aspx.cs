@@ -18,6 +18,7 @@ namespace CountryRoads.User
     public partial class WebForm5 : System.Web.UI.Page
     {
         protected DataTable dt;
+        protected bool isBookmarked;
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
@@ -39,7 +40,8 @@ namespace CountryRoads.User
                     while (dr.Read())
                     {
                         var userid = dr["userId"].ToString().Trim();
-                        checkUser(userid);
+                        logUser(userid);
+                        checkBookmark();
                     }
                 }
             }
@@ -217,7 +219,7 @@ namespace CountryRoads.User
             }
         }
 
-        protected void checkUser(string userId)
+        protected void logUser(string userId)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
             con.Open();
@@ -234,7 +236,79 @@ namespace CountryRoads.User
 
                 cmd1.ExecuteNonQuery();
                 con.Close();
-            }            
+            }
         }
+
+        protected void checkBookmark()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
+            con.Open();
+
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM country c INNER JOIN userBookmark ub ON c.countryId = ub.countryId INNER JOIN users u ON ub.userId = u.userId WHERE u.userName = '" + Session["userName"] + "' AND c.countryId = '" + Session["countryId"] + "' ORDER BY c.countryName ASC", con);
+
+            dt = new DataTable();
+            da.Fill(dt);
+
+            con.Close();
+
+            switch (dt.Rows.Count)
+            {
+                case 0:
+                    isBookmarked = false;
+                    break;
+                case 1:
+                    isBookmarked = true;
+                    break;
+            }
+        }
+
+        protected void BookmarkButton_Click(object sender, EventArgs e)
+        {
+            string userId = "";
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
+            con.Open();
+
+            SqlDataAdapter da = new SqlDataAdapter("SELECT userId FROM users WHERE username = '" + Session["userName"] + "'", con);
+            dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                userId = row["userId"].ToString();
+            }
+
+            if (isBookmarked == true)
+            {
+                con.Open();
+                string query1 = "DELETE FROM userBookmark WHERE userId = '" + userId + "' AND countryId = '" + Session["countryId"] + "'";
+                SqlCommand cmd1 = new SqlCommand(query1, con);
+                cmd1.ExecuteNonQuery();
+                con.Close();
+                isBookmarked = false;
+                return;
+            }
+
+            if (isBookmarked == false)
+            {
+                con.Open();
+                string query1 = "INSERT INTO userBookmark VALUES (@userId, @countryId)";
+                SqlCommand cmd1 = new SqlCommand(query1, con);
+                cmd1.Parameters.AddWithValue("@userId", userId);
+                cmd1.Parameters.AddWithValue("@countryId", Session["countryId"]);
+
+                cmd1.ExecuteNonQuery();
+                con.Close();
+                isBookmarked = true;
+                return;
+            }
+        }
+
+        protected void BackButton_Click(object sender, EventArgs e)
+        {
+            Session.Remove("countryId");
+            Response.Redirect("UserCountryList.aspx");
+        }
+
     }
 }

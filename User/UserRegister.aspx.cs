@@ -38,7 +38,7 @@ namespace CountryRoads.User
                 else
                 {
                     //create record in a table called userTable
-                    string query1 = "insert into users (username, password, email, fullName, gender, quizAccessed, status) values (@username, @password, @email, @fullName, @gender, @quizAccessed, @status)";
+                    string query1 = "insert into users (username, password, email, fullName, gender, quizAccessed, status, dateCreated) values (@username, @password, @email, @fullName, @gender, @quizAccessed, @status, @dateCreated)";
                     SqlCommand cmd1 = new SqlCommand(query1, con);
 
                     cmd1.Parameters.AddWithValue("@username", username.Text);
@@ -58,8 +58,11 @@ namespace CountryRoads.User
                     cmd1.Parameters.AddWithValue("@quizAccessed", 0);
                     cmd1.Parameters.AddWithValue("@status", "Active");
 
+                    DateTime now = DateTime.Now;
+                    cmd1.Parameters.AddWithValue("@dateCreated", now);
+
                     cmd1.ExecuteNonQuery();
-                    Response.Redirect("UserLandingPage.aspx");
+                    Response.Redirect("UserLogin.aspx");
                 }
                 con.Close();
             }

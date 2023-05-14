@@ -38,19 +38,19 @@
             border-radius: 8px;
         }
 
-        #continents .nav-item a {
-            color: white !important;
-            transition: all 300ms ease;
-        }
+            #continents .nav-item a {
+                color: white !important;
+                transition: all 300ms ease;
+            }
 
-        #continents .nav-item .active {
-            background-color: royalblue !important;
-        }
+            #continents .nav-item .active {
+                background-color: royalblue !important;
+            }
 
-        #continents .nav-item a:hover:not(.active) {
-            transform: scale(1.05);
-            background-color: rgba(65,105,225, 0.5);
-        }
+            #continents .nav-item a:hover:not(.active) {
+                transform: scale(1.05);
+                background-color: rgba(65,105,225, 0.5);
+            }
     </style>
     <%@ Import Namespace="System.Data" %>
 </asp:Content>
@@ -61,12 +61,24 @@
             <div class="col-2 ps-0">
 
                 <div class="d-flex flex-column bg-body-tertiary sidebar vh-100">
-
+                    <div class="mt-3 mb-2">
+                        <h1 class="mt-2 mb-0 ps-3 text-white">Continents</h1>
+                        <hr />
+                    </div>
                     <ul id="continents" class="nav nav-pills flex-column mb-auto">
-                        <li class="mt-3 mb-2">
-                            <h1 class="mt-2 mb-0 ps-3 text-white">Continents</h1>
+
+                        <% 
+                            if (Session["userName"] != null)
+                            {
+                        %>
+                        <li class="nav-item my-2 px-4 text-white">
+                            <a href="#" class="nav-link link-body-emphasis continentList fw-bold">Bookmarks</a>
                             <hr />
                         </li>
+                        <%
+                            }
+                        %>
+
                         <li class="nav-item my-2 px-4 text-white">
                             <a href="#" class="nav-link link-body-emphasis continentList">Africa</a>
                         </li>
@@ -153,7 +165,7 @@
         })
 
         document.querySelectorAll(".countryList").forEach(e => {
-            e.addEventListener("click", function () {
+            e.parentElement.addEventListener("click", function () {
 
                 document.getElementById("<%=SelectedCountry.ClientID%>").value = e.id;
 

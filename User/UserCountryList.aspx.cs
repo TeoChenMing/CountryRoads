@@ -19,12 +19,22 @@ namespace CountryRoads.User
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
             con.Open();
+            SqlDataAdapter da;
 
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM country WHERE continent LIKE '%"+SelectedContinent.Value+"%' ORDER BY countryName ASC", con);
+            if (SelectedContinent.Value.Equals("Bookmarks"))
+            {
+                da = new SqlDataAdapter("SELECT * FROM country c INNER JOIN userBookmark ub ON c.countryId = ub.countryId INNER JOIN users u ON ub.userId = u.userId WHERE u.userName = '" + Session["userName"] + "' ORDER BY c.countryName ASC", con);
 
-            dt = new DataTable();
-            da.Fill(dt);
+                dt = new DataTable();
+                da.Fill(dt);
+            } else
+            {
+                da = new SqlDataAdapter("SELECT * FROM country WHERE continent LIKE '%" + SelectedContinent.Value + "%' ORDER BY countryName ASC", con);
 
+                dt = new DataTable();
+                da.Fill(dt);
+            }
+            
             DataBind();
         }
 
