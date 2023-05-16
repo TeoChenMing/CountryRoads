@@ -15,58 +15,58 @@ namespace CountryRoads.Admin
     {
 
         /// <summary>
-        /// questionId control.
+        /// QuestionId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField questionId;
+        protected global::System.Web.UI.WebControls.HiddenField QuestionId;
 
         /// <summary>
-        /// countryId control.
+        /// CountryId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField countryId;
+        protected global::System.Web.UI.WebControls.HiddenField CountryId;
 
         /// <summary>
-        /// quizType control.
+        /// QuizType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField quizType;
+        protected global::System.Web.UI.WebControls.HiddenField QuizType;
 
         /// <summary>
-        /// title control.
+        /// QuizTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField title;
+        protected global::System.Web.UI.WebControls.HiddenField QuizTitle;
 
         /// <summary>
-        /// options control.
+        /// Options control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField options;
+        protected global::System.Web.UI.WebControls.HiddenField Options;
 
         /// <summary>
-        /// answer control.
+        /// Answer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField answer;
+        protected global::System.Web.UI.WebControls.HiddenField Answer;
 
         /// <summary>
         /// Update control.

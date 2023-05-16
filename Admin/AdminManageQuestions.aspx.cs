@@ -49,12 +49,12 @@ namespace CountryRoads.Admin
             using (var cmd = new SqlCommand("UPDATE questions SET countryId = @countryId, quizType = @quizType, title = @title, " +
                 "options = @options, answer = @answer WHERE questionId = @questionId", con))
             {
-                cmd.Parameters.AddWithValue("@questionId", questionId.Value);
-                cmd.Parameters.AddWithValue("@countryId", countryId.Value);
-                cmd.Parameters.AddWithValue("@quizType", quizType.Value);
-                cmd.Parameters.AddWithValue("@title", title.Value);
-                cmd.Parameters.AddWithValue("@options", options.Value);
-                cmd.Parameters.AddWithValue("@answer", answer.Value);
+                cmd.Parameters.AddWithValue("@questionId", QuestionId.Value);
+                cmd.Parameters.AddWithValue("@countryId", CountryId.Value);
+                cmd.Parameters.AddWithValue("@quizType", QuizType.Value);
+                cmd.Parameters.AddWithValue("@title", QuizTitle.Value);
+                cmd.Parameters.AddWithValue("@options", Options.Value);
+                cmd.Parameters.AddWithValue("@answer", Answer.Value);
 
                 cmd.ExecuteNonQuery();
 
@@ -66,34 +66,53 @@ namespace CountryRoads.Admin
 
         protected void Delete_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
-            con.Open();
+            try
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
+                con.Open();
 
-            
+                using (var cmd = new SqlCommand("DELETE FROM questions WHERE questionId = @questionId", con))
+                {
+                    cmd.Parameters.AddWithValue("@questionId", Int32.Parse(QuestionId.Value.Trim()));
+                    cmd.ExecuteNonQuery();
+                }
 
-            con.Close();
-            Response.Redirect(Request.RawUrl);
+                con.Close();
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         protected void AddQuestion_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
-            con.Open();
-
-            using (var cmd = new SqlCommand("INSERT INTO questions VALUES (@countryId, @quizType, @title, @options, @answer)", con))
+            try
             {
-                cmd.Parameters.AddWithValue("@countryId", countryId.Value);
+
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("INSERT INTO questions VALUES (@countryId, @quizType, @title, @options, @answer)", con);
+
+                cmd.Parameters.AddWithValue("@countryId", CountryId.Value);
                 cmd.Parameters.AddWithValue("@quizType", "TrueFalse");
-                cmd.Parameters.AddWithValue("@title", title.Value);
+                cmd.Parameters.AddWithValue("@title", QuizTitle.Value);
                 cmd.Parameters.AddWithValue("@options", "True||False");
-                cmd.Parameters.AddWithValue("@answer", answer.Value);
+                cmd.Parameters.AddWithValue("@answer", Answer.Value);
 
                 cmd.ExecuteNonQuery();
 
-            }
 
-            con.Close();
-            Response.Redirect(Request.RawUrl);
+                con.Close();
+                Response.Redirect(Request.RawUrl);
+
+            }
+            catch
+            {
+
+            }
         }
     }
 }
