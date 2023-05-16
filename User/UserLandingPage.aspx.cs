@@ -47,15 +47,9 @@ namespace CountryRoads.User
                     string countryId = dr["countryId"].ToString().Trim();
                     string countryName = dr["countryName"].ToString().Trim();
                     string countryFlag = dr["countryFlag"].ToString().Trim();
-                    string countryCapital = dr["countryCapital"].ToString().Trim();
-                    string countryArea = dr["countryArea"].ToString().Trim();
-                    string countryPopulation = dr["countryPopulation"].ToString().Trim();
-                    string countryLanguage = dr["countryLanguage"].ToString().Trim();
                     string countryTimezone = dr["countryTimeZone"].ToString().Trim();
-                    string countryCurrency = dr["countryCurrency"].ToString().Trim();
 
-                    DateTimeZone timezone = DateTimeZoneProviders.Tzdb[countryTimezone];    
-                    string timezoneName = TZNames.GetDisplayNameForTimeZone(timezone.Id, "en-US");
+                    DateTimeZone timezone = DateTimeZoneProviders.Tzdb[countryTimezone];   
                     DateTime utcTime = DateTime.UtcNow;
 
                     var instant = Instant.FromDateTimeUtc(DateTime.SpecifyKind(utcTime, DateTimeKind.Utc));
