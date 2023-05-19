@@ -37,5 +37,10 @@ namespace CountryRoads.User
             Session.Remove("userName");
             Response.Redirect("~/User/UserLandingPage.aspx");
         }
+
+        protected void QuizzesButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/User/UserQuestions.aspx");
+        }
     }
 }

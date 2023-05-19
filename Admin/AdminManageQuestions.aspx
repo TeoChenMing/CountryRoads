@@ -20,12 +20,12 @@
     
 
     <div class="container-fluid">
-        <asp:HiddenField ID="questionId" runat="server" Value=""/> 
-        <asp:HiddenField ID="countryId" runat="server" Value=""/>  
-        <asp:HiddenField ID="quizType" runat="server" Value=""/>
-        <asp:HiddenField ID="title" runat="server" Value=""/>
-        <asp:HiddenField ID="options" runat="server" Value=""/>
-        <asp:HiddenField ID="answer" runat="server" Value=""/>
+        <asp:HiddenField ID="QuestionId" runat="server" Value=""/> 
+        <asp:HiddenField ID="CountryId" runat="server" Value=""/>  
+        <asp:HiddenField ID="QuizType" runat="server" Value=""/>
+        <asp:HiddenField ID="QuizTitle" runat="server" Value=""/>
+        <asp:HiddenField ID="Options" runat="server" Value=""/>
+        <asp:HiddenField ID="Answer" runat="server" Value=""/>
             
         <table
             id="myTable"
@@ -58,15 +58,15 @@
                         <td><% =row["countryId"] %> </td>
                         <td><% =row["quizType"] %></td>
                         <td class="text-nowrap text-truncate" style="width: 200px;"><% =row["title"] %></td>
-                        <td class="text-nowrap text-truncate"><% =row["options"] %></td>
-                        <td class="text-nowrap text-truncate"><% =row["answer"] %></td>  
+                        <td class="text-nowrap text-truncate" style="max-width: 275px;"><% =row["options"] %></td>
+                        <td class="text-nowrap text-truncate" style="max-width: 125px;"><% =row["answer"] %></td>  
                         <td>
                             <div class="row">
                                 <div class="col">
                                     <a class="editBtn" href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="bi bi-pencil-square"></i></a>
                                 </div>
                                 <div class="col">
-                                    <a class="deleteBtn" href="#" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"><i class="bi bi-trash-fill"></i></a>
+                                    <a id="deleteIcon" class="deleteBtn" href="#" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"><i class="bi bi-trash-fill"></i></a>
                                 </div>
                             </div>
                         </td>
@@ -117,22 +117,22 @@
 
     <!-- Delete confirmation Modal -->
     <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel2" data-bs-backdrop="static">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Delete Confirmation</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" aria-hidden="true">
-            </button>
-          </div>
-          <div class="modal-body">
-            Are you sure you want to delete this question?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <asp:Button ID="Delete" runat="server" class="btn btn-danger" Text="Delete" OnClick="Delete_Click"></asp:Button>
-          </div>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" aria-hidden="true">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this question?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <asp:Button ID="Delete" runat="server" class="btn btn-danger" Text="Delete" OnClick="Delete_Click"></asp:Button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <!-- Add New Question Modal -->
@@ -181,7 +181,7 @@
                                     <label for="addTitle" class="form-label">Title:</label>
                                 </div>
                                 <div class="col-7">
-                                    <input type="text" class="form-control" id="addTitle" value="" required>
+                                    <input type="text" class="form-control" id="addTitle" value="">
                                 </div>
                             </div>
 
@@ -219,8 +219,8 @@
                  return $(this).text();
              }).get();
 
-
              const optionsArr = rowData[4].split("||");
+             var quesId = rowData[0];
 
              // set the modal content based on the row data
              $('#myModal .modal-title').text("Edit Question - " + rowData[0]);
@@ -257,7 +257,7 @@
                  '<label for="title" class="form-label">Title:</label>' +
                  '</div>' +
                  '<div class="col-7">' +
-                 '<textarea class="form-control" id="title" rows="3">' + rowData[3] + '</textarea>' +
+                 '<textarea class="form-control" id="quizTitle" rows="3">' + rowData[3] + '</textarea>' +
                  '</div>' +
                  '</div>' +
                  '<input type="hidden" id="options" value="' + rowData[4] + '"/>' +
@@ -289,7 +289,7 @@
                      '</div>' +
                      '</div>'
                  );
-             }
+             };
 
              $('#myModal .modal-subbody').html(
                  '<div class="row mb-3">' +
@@ -302,17 +302,37 @@
                  '</div>'
              );
 
+             $('#ModalContent_Update').on('click', function () {
+                 $('#<% =QuestionId.ClientID %>').val(quesId);
+                 $('#<% =CountryId.ClientID %>').val($('#countryId').val());
+                 $('#<% =QuizType.ClientID %>').val($('#quizType').val());
+                 $('#<% =QuizTitle.ClientID %>').val($('#quizTitle').val());
+
+                 // Future add options edit feature
+                 $('#<% =Options.ClientID %>').val($('#options').val());
+
+                 $('#<% =Answer.ClientID %>').val($('#answer').val());
+
+             });
+
+
+             $('#ModalContent_Delete').on('click', function () {
+                 $('#<% =QuestionId.ClientID %>').val(quesId);
+             });
+
          });
 
-         $('#ModalContent_AddQuestion').on('click', function () {
+         $('#addQuesBtn').on('click', function () {
+             $('#ModalContent_AddQuestion').on('click', function () {
 
-             $('#<% =countryId.ClientID %>').val($('#addCountryId').val());
-             $('#<% =quizType.ClientID %>').val($('#addQuizType').val());
-             $('#<% =title.ClientID %>').val($('#addTitle').val());
-             $('#<% =options.ClientID %>').val($('#addOptions').val());
-             $('#<% =answer.ClientID %>').val($('#addAnswer').val());
+                 $('#<% =CountryId.ClientID %>').val($('#addCountryId').val());
+                 $('#<% =QuizType.ClientID %>').val($('#addQuizType').val());
+                 $('#<% =QuizTitle.ClientID %>').val($('#addTitle').val());
+                 $('#<% =Options.ClientID %>').val($('#addOptions').val());
+                 $('#<% =Answer.ClientID %>').val($('#addAnswer').val());
 
-         })
+             });
+         });
 
 
          // event listener for the hidden.bs.modal event
