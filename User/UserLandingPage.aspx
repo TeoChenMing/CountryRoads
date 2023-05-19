@@ -41,8 +41,8 @@
         <div id="name">
             <p id="namep">Name</p>
         </div>
-        <p>Click a country to learn more about it.</p>
-
+        <h5>Click a country to learn more about it.</h5>
+        
         <div class="w-100" style="border: 3px solid black; padding: 5% 1rem; margin-bottom: 5%">
             <%--Map--%>
             <?xml version="1.0" ?>
