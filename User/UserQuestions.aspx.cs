@@ -7,12 +7,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static NodaTime.TimeZones.TzdbZone1970Location;
+using static NodaTime.TimeZones.ZoneEqualityComparer;
 
 namespace CountryRoads.User
 {
     public partial class UserQuestions : System.Web.UI.Page
     {
-        protected DataTable dt;
+        protected DataTable dt, userDt, questionsDt;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +28,20 @@ namespace CountryRoads.User
                 dt = new DataTable();
                 da.Fill(dt);
 
+                SqlDataAdapter questionsDA = new SqlDataAdapter("SELECT TOP 5 * FROM questions " +
+                                                                "INNER JOIN country ON questions.countryId = country.countryId " +
+                                                                "WHERE country.countryId IN " +
+                                                                "( SELECT countryId FROM userView " +
+                                                                "INNER JOIN users ON users.userId = userView.userId " +
+                                                                "WHERE users.username = '" + Session["userName"] + "' ) " +
+                                                                "ORDER BY NEWID()", con);
+
+                questionsDt = new DataTable();
+                questionsDA.Fill(questionsDt);
+
                 DataBind();
+
+                con.Close();
 
             }
             else
@@ -35,9 +50,38 @@ namespace CountryRoads.User
             }
         }
 
-        protected void Submit_Click(object sender, EventArgs e)
+        protected void Update_Click(object sender, EventArgs e)
         {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
+            con.Open();
 
+            var session_username = Session["userName"];
+
+            SqlCommand cmdType = new SqlCommand("SELECT * FROM users WHERE username = '" + session_username + "' ", con);
+            SqlDataReader dr = cmdType.ExecuteReader();
+
+            int quizAccessedOri = 0;
+
+            while (dr.Read())
+            {
+                quizAccessedOri = Int32.Parse(dr["quizAccessed"].ToString());
+            }
+
+            quizAccessedOri += 1;
+
+            dr.Close();
+
+            using (var cmd = new SqlCommand("UPDATE users SET quizAccessed = @quizAccessed WHERE username = @username", con))
+            {
+                cmd.Parameters.AddWithValue("@quizAccessed", quizAccessedOri);
+                cmd.Parameters.AddWithValue("@username", Session["userName"]);
+
+                cmd.ExecuteNonQuery();
+
+            }
+
+            con.Close();
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

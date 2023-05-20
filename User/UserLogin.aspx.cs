@@ -44,7 +44,7 @@ namespace CountryRoads.User
 
                 if (status.Equals("Banned"))
                 {
-                    ErrorMsg.Text = "You have been banned LMAO GET REKT :c";
+                    ErrorMsg.Text = "You have been banned. Please contact admin if you witsh to recover your account.";
                     return;
                 }
 
