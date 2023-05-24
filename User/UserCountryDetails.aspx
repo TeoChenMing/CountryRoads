@@ -26,7 +26,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="mt-2" style="margin: 0 10%">
         <div>
-            <asp:Button ID="BackButton" runat="server" Text="Back to Previous Page" class="btn btn-light" OnClick="BackButton_Click" />
+<%--            <asp:Button ID="BackButton" runat="server" Text="Back to Previous Page" class="btn btn-light" OnClick="BackButton_Click" />--%>
             <div class="mt-5 d-flex">
                 <div class="col-6 d-flex">
                     <h1 runat="server" id="CountryName"></h1>

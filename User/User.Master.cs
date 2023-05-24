@@ -42,5 +42,10 @@ namespace CountryRoads.User
         {
             Response.Redirect("~/User/UserQuestions.aspx");
         }
+
+        protected void UserProfileButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/User/UserProfile.aspx");
+        }
     }
 }
