@@ -33,30 +33,54 @@
 
         </section>
 
+        <section id="questions_accessed">
+            <div class="card mt-4 mb-4 p-4">
+                <div class="row d-flex justify-content-center">
+                    <div class="col text-center">
+                        <h2>Total Attempts made:</h2>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col text-center">
+                        <% if (userDt != null)
+                            {
+                                foreach (DataRow row in userDt.Rows)
+                                {
+
+                        %>
+                        <h1><% =row["quizAccessed"] %></h1>
+                        <% }
+                            }  %>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="random_question">
-
-            <div class="row d-flex justify-content-center">
-                <div class="col text-center">
-                    <h2>Quick Quiz!</h2>
+            <div class="card mt-4 mb-4 p-4">
+                <div class="row d-flex justify-content-center">
+                    <div class="col text-center">
+                        <h2>Quick Quiz!</h2>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row d-flex justify-content-center">
-                <div class="col text-center">
-                    <h4>Test yourself with a quiz from a random selected country!</h4>
+                <div class="row d-flex justify-content-center">
+                    <div class="col text-center">
+                        <p>Test yourself with a quiz from a random selected country!</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row d-flex justify-content-center">
-                <div class="col text-center">
-                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Attempt Quiz</a>
+                <div class="row d-flex justify-content-center">
+                    <div class="col text-center">
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Attempt Quiz</a>
+                    </div>
                 </div>
             </div>
 
         </section>
 
         <section id="formatted_question">
-
+            <div class="card mt-4 mb-4 p-4">
             <div class="row d-flex justify-content-center">
                 <div class="col text-center">
                     <h2>Test your knowledge!</h2>
@@ -65,7 +89,7 @@
 
             <div class="row d-flex justify-content-center">
                 <div class="col text-center">
-                    <h4>We'll pick 5 random Questions from the countries you have browsed, and you would have to answer them!</h4>
+                    <p>We'll pick 5 random Questions from the countries you have browsed, and you would have to answer them!</p>
                 </div>
             </div>
 
@@ -74,7 +98,7 @@
                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#QuestionsSetModal">Attempt Quiz</a>
                 </div>
             </div>
-
+                </div>
         </section>
 
         <!-- Random Quiz Modal -->
@@ -172,27 +196,31 @@
                                 </div>
 
                                 <div class="modal-body">
-                                    <div id="questionStatus">
-                                        Status
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <h2 id="questionStatus">Status</h2>
+                                        </div>
                                     </div>
 
-                                    <div id="correctAns" style="display: none">
+                                    <div id="correctAns" class="row" style="display: none">
                                         <% 
                                             foreach (DataRow row in dt.Rows)
                                             {
                                         %>
 
-                                        <span>
-                                            Correct answer is: <% =row["answer"] %>
-                                        </span>
+                                        <div class="col text-center">
+                                            Correct answer is: <br /> <% =row["answer"] %>
+                                        </div>
 
                                         <%
                                             }
                                         %>
                                     </div>
 
-                                    <div>
-                                        You have completed the quiz!
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            You have completed the quiz!
+                                        </div>
                                     </div>
                                 </div>
 
@@ -212,6 +240,7 @@
                 <div class="modal-content">
                     <div id="QuestionsSetCarousel" class="carousel slide" data-interval="false">
                         <div class="carousel-inner">
+                            
                             <%  if (questionsDt != null)
                                 {
                                     int counter = 0;
@@ -238,7 +267,7 @@
                                 </div>
 
                                 <div class="modal-body">
-                                    <input hidden id="currentquestionid" value="option<% =row["questionId"] %>" />
+                                    
                                     <div class="row justify-content-center" style="background-color: #F5F5F5;">
                                         <div class="col-md-auto">
                                             <img src="<% =row["countryFlag"] %>" alt="Country Flag" style="max-width: 600px;">
@@ -288,7 +317,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="hidden" id="currentQuestionAns" value="<% =row["answer"] %>" />
 
                                     </div>
 
@@ -306,11 +334,11 @@
                                     <!-- show submit -->
                                     <%  if (counter == 4)
                                         { %>
-                                    <button id="check" type="button" class="btn btn-success" onclick="checkSetAnswer()" data-bs-target="#QuestionsSetCarousel" data-bs-slide="next">Submit</button>
+                                    <button id="check" type="button" class="btn btn-success" onclick="checkSetAnswer(<% =row["questionId"] %>, '<% =row["answer"] %>')" data-bs-target="#QuestionsSetCarousel" data-bs-slide="next">Submit</button>
                                     <% }
                                         else
                                         { %>
-                                    <button id="next" type="button" class="btn btn-primary" data-bs-target="#QuestionsSetCarousel" onclick="calculateResults()" data-bs-slide="next">Next</button>
+                                    <button id="next" type="button" class="btn btn-primary" data-bs-target="#QuestionsSetCarousel" onclick="calculateResults(<% =row["questionId"] %>, '<% =row["answer"] %>')" data-bs-slide="next">Next</button>
                                     <% } %>
                                 </div>
 
@@ -334,12 +362,16 @@
 
                                 <div class="modal-body">
 
-                                    <div id="score">
-                                        You just got <span id="quizScore"></span> out of 5!
+                                    <div class="row">
+                                        <div id="score" class="col text-center" style="font-size: 21px">
+                                            You just got <b id="quizScore"></b> out of 5!
+                                        </div>
                                     </div>
 
-                                    <div id="setQuestionStatus">
-                                        Status
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <h2 id="setQuestionStatus">Status</h2>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -367,9 +399,37 @@
             // console.log("Selected Value: " + getSelectedValue);
 
             if (questionAns == getSelectedValue) {
-                document.getElementById("questionStatus").innerHTML = "Congratulations!";
+                const customMsg = [
+                    "Congratulations on getting a perfect score!",
+                    "Well done! You aced it!",
+                    "Fantastic job! You got all the questions right!",
+                    "Impressive! You're a master of this topic!",
+                    "Bravo! Flawless performance!",
+                    "Amazing work! You didn't miss a single question!",
+                    "Incredible! You're a true expert!",
+                    "Outstanding! Your knowledge is impeccable!",
+                    "Superb! You couldn't have done any better!",
+                    "Excellent job! You're at the top of your game!"
+                ];
+
+                const random = Math.floor(Math.random() * customMsg.length);
+                document.getElementById("questionStatus").innerHTML = customMsg[random];
             } else {
-                document.getElementById("questionStatus").innerHTML = "Thats too bad!";
+                const customMsg = [
+                    "Better luck next time!",
+                    "Don't worry, practice makes perfect!",
+                    "Keep trying, you'll get there!",
+                    "Nice effort, but not quite there yet.",
+                    "Almost had it! Keep going!",
+                    "You're on the right track, just a little more!",
+                    "Not quite what we're looking for. Try again!",
+                    "Keep pushing yourself, you'll succeed!",
+                    "Don't give up, you're improving!",
+                    "Keep practicing, you're getting closer!"
+                ];
+
+                const random = Math.floor(Math.random() * customMsg.length);
+                document.getElementById("questionStatus").innerHTML = customMsg[random];
                 document.getElementById("correctAns").style.display = "block";
             }
 
@@ -385,38 +445,57 @@
 
         var points = 0
 
-        function calculateResults() {
-            var questionAns = document.getElementById("currentQuestionAns").value;
-            console.log("Question to Ans: " + questionAns);
-            var currentQuestionId = document.getElementById("currentquestionid").value;
-            console.log(currentQuestionId);
-            var query = 'input[name="' + currentQuestionId + '"]:checked';
+        function calculateResults(questionId, answer) {
+            console.log("Question ID: ", questionId);
+            console.log("Question to Ans: " + answer);
+            var query = 'input[name="option' + questionId + '"]:checked';
             var getSelectedValue = document.querySelector(query).value;
             console.log("Selected Value: " + getSelectedValue);
 
-            if (questionAns == getSelectedValue) {
+            if (answer == getSelectedValue) {
                 points += 1;
             }
-
-            // goNext();
         }
 
-        function goNext() {
-            var idx = document.getElementById("currentquestionindex").value;
-            console.log(idx);
-            var newIdx = parseInt(idx) + 1;
-            $("#QuestionsSetCarousel").carousel(newIdx);
-        }
-
-        function goBack() {
-            var idx = document.getElementById("currentquestionindex").value;
-            console.log(idx);
-            var newIdx = parseInt(idx) - 1;
-            $("#QuestionsSetCarousel").carousel(newIdx);
-        }
-
-        function checkSetAnswer() {
+        function checkSetAnswer(questionId, answer) {
+            calculateResults(questionId, answer);
             document.getElementById("quizScore").innerHTML = points;
+
+            // custom message
+            if (points != 5) {
+                const customMsg = [
+                    "Better luck next time!",
+                    "Don't worry, practice makes perfect!",
+                    "Keep trying, you'll get there!",
+                    "Nice effort, but not quite there yet.",
+                    "Almost had it! Keep going!",
+                    "You're on the right track, just a little more!",
+                    "Not quite what we're looking for. Try again!",
+                    "Keep pushing yourself, you'll succeed!",
+                    "Don't give up, you're improving!",
+                    "Keep practicing, you're getting closer!"
+                ];
+
+                const random = Math.floor(Math.random() * customMsg.length);
+                document.getElementById("setQuestionStatus").innerHTML = customMsg[random];
+            } else {
+                const customMsg = [
+                    "Congratulations on getting a perfect score!",
+                    "Well done! You aced it!",
+                    "Fantastic job! You got all the questions right!",
+                    "Impressive! You're a master of this topic!",
+                    "Bravo! Flawless performance!",
+                    "Amazing work! You didn't miss a single question!",
+                    "Incredible! You're a true expert!",
+                    "Outstanding! Your knowledge is impeccable!",
+                    "Superb! You couldn't have done any better!",
+                    "Excellent job! You're at the top of your game!"
+                ];
+
+                const random = Math.floor(Math.random() * customMsg.length);
+                document.getElementById("setQuestionStatus").innerHTML = customMsg[random];
+            }
+            
         }
 
     </script>

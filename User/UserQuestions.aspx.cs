@@ -39,6 +39,12 @@ namespace CountryRoads.User
                 questionsDt = new DataTable();
                 questionsDA.Fill(questionsDt);
 
+                // get total attempts
+                SqlDataAdapter userDA = new SqlDataAdapter("SELECT * FROM users WHERE username = '" + Session["userName"] + "'", con);
+
+                userDt = new DataTable();
+                userDA.Fill(userDt);
+
                 DataBind();
 
                 con.Close();
