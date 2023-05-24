@@ -85,19 +85,28 @@
                             </div>
                             <div class ="pt-4 pb-4">
                                 <label for="currentPass" class="fs-6 form-label text-start">Current Password:</label>
-                                <asp:TextBox type="password" class="form-control fst-italic" ID="currentText" placeholder="Enter your current password here..." runat="server"></asp:TextBox>
-                                <asp:Label ID="ErrorMsg" class="text text-danger" runat="server" Text=""></asp:Label>
+                                <asp:TextBox type="password" class="form-control fst-italic" ID="currentPass" placeholder="Enter your current password here" runat="server"></asp:TextBox>
+                                <asp:Label ID="curPassErrorMsg" class="text text-danger" runat="server" Text=""></asp:Label>
                             </div>
                             <div class ="pt-4 pb-4">
                                 <label for="newPass" class="fs-6 form-label text-start">New Password:</label>
-                                <asp:TextBox type="password" class="form-control fst-italic" ID="newText" placeholder="Enter your new password here..." runat="server"></asp:TextBox>
+                                <asp:TextBox type="password" class="form-control fst-italic" ID="newPass" placeholder="Enter your new password here" runat="server"></asp:TextBox>
                             </div>
                             <div class ="pt-4 pb-4">
                                 <label for="confirmPass" class="fs-6 form-label text-start">Confirm Password:</label>
-                                <asp:TextBox type="password" class="form-control fst-italic" ID="confirmText" placeholder="Enter your confirm password here..." runat="server"></asp:TextBox>
+                                <asp:TextBox type="password" class="form-control fst-italic" ID="confirmNewPass" placeholder="Enter your confirm password here" runat="server"></asp:TextBox>
                             </div>
+
+                            <div style="color: red;">
+                                <asp:Label ID="errorMessage" class="text text-danger" runat="server" Text=""></asp:Label>
+                                <br />
+                                <div class="alert alert-danger" role="alert">
+                                  * WARNING: Updating password will require you to login again.
+                                </div>
+                            </div>
+
                             <div class="pt-4 pb-4 text-center">
-                                <asp:Button ID="updateBtn" type="submit" class="btn btn-primary mt-4" runat="server" Text="Update" OnClick="Update_Click" />
+                                <asp:Button ID="updateBtn" type="submit" class="btn btn-primary" runat="server" Text="Update" OnClick="Update_Click"/>
                             </div>
                         </div>
                     </div>
@@ -107,4 +116,6 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptsPlaceHolder" runat="server">
+    <script>
+    </script>
 </asp:Content>

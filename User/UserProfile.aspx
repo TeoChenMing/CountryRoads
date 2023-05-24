@@ -4,7 +4,7 @@
     <style>
         #countryList {
             width: 100%;
-            height: 250px;
+            height: 60vh;
             overflow: auto;
             overflow-anchor: none;
             box-sizing: content-box;
@@ -50,6 +50,14 @@
                 transform: scale(1.05);
                 background-color: rgba(65,105,225, 0.5);
             }
+
+        .profile-info {
+            margin: 20px 0;
+        }
+
+        .profile-info .profile-details .row {
+            padding: 5px 18px;
+        }
     </style>
 
     <%@ Import Namespace="System.Data" %>
@@ -79,60 +87,120 @@
             </div>
 
             <section id="Dashboard" class="col-10 z-3 mt-4">
-
-                <div class="row mt-3">
-                    <div class="card">
+                <div class="row profile-info">
+                    <% if (userTable != null)
+                        {
+                            foreach (DataRow row in userTable.Rows)
+                            {%>
+                    <div class="card profile-details">
                         <div class="card-body">
-                            <h2 class="d-inline-block">Bookmarks</h2>
+                            <h2 class="d-inline-block">Profile Info: <% = row["username"] %></h2>
                             <div class="float-end">
                                 <i class="bi bi-bookmarks"></i>
                             </div>
                         </div>
-                        <div class="d-inline-block">
-                            <ul id="countryList" class="d-flex flex-wrap list-unstyled flex-column">
-                                <% if (dt != null)
-                                    {
-                                        foreach (DataRow row in dt.Rows)
-                                        {
-                                %>
 
-                                <li>
-                                    <a href="#" class="countryList" style="text-decoration: none; color: dimgrey" id="<% =row["countryId"] %>"><% =row["countryName"] %></a>
-                                </li>
-
-                                <%
-                                        }
-                                    }
-                                %>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h2 class="d-inline-block">Country You had Viewed:</h2>
-
-
-                            <div class="float-end">
-                                <i class="bi bi-globe"></i>
+                        <div class="row">
+                            <div class="col-2">
+                                Full Name: 
+                            </div>
+                            <div class="col">
+                                <% =row["fullName"] %>
                             </div>
                         </div>
-                        <div class="d-inline-block">
-                            <ul id="countryList" class="d-flex flex-wrap list-unstyled flex-column">
-                                <% if (dtable != null)
-                                    {
-                                        foreach (DataRow row in dtable.Rows)
+                        <div class="row">
+                            <div class="col-2 align-self-center">
+                                Password: 
+                            </div>
+                            <div class="col-2 align-self-center">
+                                **********
+                                <asp:Button ID="ChgPassword" runat="server" Text="Change Password" class="btn btn-primary" OnClick="ChgPassword_Click"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                E-mail: 
+                            </div>
+                            <div class="col">
+                                <% =row["email"] %>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                Gender: 
+                            </div>
+                            <div class="col">
+                                <% =row["gender"] %>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                Account created on: 
+                            </div>
+                            <div class="col">
+                                <% =row["dateCreated"] %>
+                            </div>
+                        </div>
+                        <%}
+                            }          %>
+                </div>
+                    </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="d-inline-block">Bookmarks</h2>
+                                <div class="float-end">
+                                    <i class="bi bi-bookmarks"></i>
+                                </div>
+                            </div>
+                            <div class="d-inline-block">
+                                <ul id="countryList" class="d-flex flex-wrap list-unstyled flex-column">
+                                    <% if (dt != null)
                                         {
-                                %>
+                                            foreach (DataRow row in dt.Rows)
+                                            {
+                                    %>
 
-                                <li>
-                                    <a href="#" class="countryList" style="text-decoration: none; color: dimgrey" id="<% =row["countryId"] %>"><% = row["countryName"] %></a>
-                                </li>
+                                    <li>
+                                        <a href="#" class="countryList" style="text-decoration: none; color: dimgrey" id="<% =row["countryId"] %>"><% =row["countryName"] %></a>
+                                    </li>
 
-                                <%
+                                    <%
+                                            }
                                         }
-                                    }
-                                %>
-                            </ul>
+                                    %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="d-inline-block">Latest Country Viewed:</h2>
+                                <div class="float-end">
+                                    <i class="bi bi-globe"></i>
+                                </div>
+                            </div>
+                            <div class="d-inline-block">
+                                <ul id="countryList" class="d-flex flex-wrap list-unstyled flex-column">
+                                    <% if (dtable != null)
+                                        {
+                                            foreach (DataRow row in dtable.Rows)
+                                            {
+                                    %>
+
+                                    <li>
+                                        <a href="#" class="countryList" style="text-decoration: none; color: dimgrey" id="<% =row["countryId"] %>"><% = row["countryName"] %></a>
+                                    </li>
+
+                                    <%
+                                            }
+                                        }
+                                    %>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

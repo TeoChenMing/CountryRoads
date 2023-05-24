@@ -12,14 +12,13 @@ namespace CountryRoads.User
 {
     public partial class WebForm7 : System.Web.UI.Page
     {
-        protected DataTable dt;
-        protected DataTable dtable;
+        protected DataTable dt, dtable, userTable;
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
             con.Open();
-            SqlDataAdapter da;
-            SqlDataAdapter sda;
+            SqlDataAdapter da, sda;
+            SqlDataAdapter userDA;
 
             if (Session["userName"] != null)
             {
@@ -35,6 +34,10 @@ namespace CountryRoads.User
                     "ORDER BY viewId DESC", con);
                 dtable = new DataTable();
                 sda.Fill(dtable);
+
+                userDA = new SqlDataAdapter("SELECT * FROM users WHERE users.username = '" + Session["userName"] + "'", con);
+                userTable = new DataTable();
+                userDA.Fill(userTable);
 
                 DataBind();
             } else
@@ -57,6 +60,11 @@ namespace CountryRoads.User
         protected void FilterCountries_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void ChgPassword_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UserSettings.aspx");
         }
 
         protected void CountryDetailsButton_Click(object sender, EventArgs e)

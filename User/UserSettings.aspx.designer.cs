@@ -15,40 +15,49 @@ namespace CountryRoads.User
     {
 
         /// <summary>
-        /// currentText control.
+        /// currentPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox currentText;
+        protected global::System.Web.UI.WebControls.TextBox currentPass;
 
         /// <summary>
-        /// ErrorMsg control.
+        /// curPassErrorMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrorMsg;
+        protected global::System.Web.UI.WebControls.Label curPassErrorMsg;
 
         /// <summary>
-        /// newText control.
+        /// newPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox newText;
+        protected global::System.Web.UI.WebControls.TextBox newPass;
 
         /// <summary>
-        /// confirmText control.
+        /// confirmNewPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirmText;
+        protected global::System.Web.UI.WebControls.TextBox confirmNewPass;
+
+        /// <summary>
+        /// errorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorMessage;
 
         /// <summary>
         /// updateBtn control.
