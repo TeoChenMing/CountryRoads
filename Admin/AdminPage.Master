@@ -92,7 +92,7 @@
                     <div class="container-fluid">
                         <div class=""></div>
                         <div class="float-end pe-4 fs-4">
-                            <i class="bi bi-person-circle"></i> <% =Session["userName"] %>
+                             <img src="../Assets/Images/user.jpg" style="width: 40px; height: 40px;" /> <% =Session["userName"] %>
                         </div>
                     </div>
                 </div>

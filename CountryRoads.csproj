@@ -181,6 +181,7 @@
     <Content Include="Assets\Images\loginGlobe.gif" />
     <Content Include="Assets\Images\logo.png" />
     <Content Include="Assets\Images\teded.png" />
+    <Content Include="Assets\Images\user.jpg" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />

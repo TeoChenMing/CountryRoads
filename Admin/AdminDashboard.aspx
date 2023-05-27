@@ -5,110 +5,56 @@
     Admin Dashboard
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <%@ Import Namespace="System.Data" %>
     <div class="content">
         <h2>Dashboard</h2>
 
         <div class="container-fluid">
             <div class="row mt-4">
                 <div class="col-4">
-                    <div class="row">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="d-inline-block">Country Profiles</h4>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="d-inline-block">Country Profiles</h4>
                                                 
                                                     
-                                <div class="float-end">
-                                    <i class="bi bi-globe-americas bg-body-secondary p-2 rounded"></i>
-                                </div>
+                            <div class="float-end">
+                                <i class="bi bi-globe-americas bg-body-secondary p-2 rounded"></i>
+                            </div>
                                                 
 
-                                <h1 class="mt-4">70</h1>
+                            <h1 class="mt-4">
+                                <asp:Label ID="countryProfile" runat="server" Text=""></asp:Label>
+                            </h1>
                                                 
-                            </div>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="d-inline-block">Users</h4>
+                </div>
+
+                        
+                        
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="d-inline-block">Users</h4>
                                                 
                                                     
-                                <div class="float-end">
-                                    <i class="bi bi-people bg-body-secondary p-2 rounded"></i>
-                                </div>
+                            <div class="float-end">
+                                <i class="bi bi-people bg-body-secondary p-2 rounded"></i>
+                            </div>
                                                 
 
-                                <h1 class="mt-4">69</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-8 d-flex">
-                    <div class="card vw-100">
-                        <div class="card-body">
-                            <h4>Traffic</h4>
-                            <div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-8 d-flex">
-                    <div class="row vw-100">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Recent Users</h4>
+                            <h1 class="mt-4">
+                                <asp:Label ID="userProfile" runat="server" Text="Label"></asp:Label>
 
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                    </table>
-                            </div>
+                            </h1>
                         </div>
                     </div>
-                                    
                 </div>
-                <div class="col-4 d-flex">
-                    <div class="card vw-100">
+
+                <div class="col-4">
+                    <div class="card">
                         <div class="card-body">
-                            <h4 class="d-inline-block">Quiz Assesment</h4>
+                            <h4 class="d-inline-block">Quiz Assessed</h4>
                                                 
                                                     
                                 <div class="float-end">
@@ -116,15 +62,76 @@
                                 </div>
                                                 
 
-                                <h1 class="position-absolute fixed-bottom p-3">420</h1>
+                                <h1 class="mt-4">
+                                    <asp:Label ID="quiz" runat="server" Text="Label"></asp:Label>
+
+                                </h1>
                         </div>
                     </div>
                 </div>
+                        
+                
+                    
+                        
+                    
+            </div>
+                
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Recent Users</h4>
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="userTableBody">
+
+                                    <%   if (dt4 != null)
+                                        {
+                                            foreach (DataRow row in dt4.Rows)
+                                            {
+
+
+                                    %>
+                        
+                        
+                                        <tr>
+                                            <td><% =row["userId"] %></td>
+                                            <td class="text-nowrap text-truncate">
+                                                <% =row["fullName"] %>
+                                            </td>
+                                            <td class="text-nowrap text-truncate"><% =row["username"] %> </td>
+                                            <td class="text-nowrap text-truncate">
+                                                <% =row["email"] %>
+                                            </td>
+                                        </tr>
+                
+                                    <% 
+                                            }
+
+                                        }
+                                        %>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                                    
+                </div>
+                
             </div>
                             
         </div>
-
     </div>
+
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ModalContent" runat="server">
    
