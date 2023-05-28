@@ -37,7 +37,7 @@
                     <th data-field="email">Email</th>
                     <th data-field="fullName">Fullname</th>
                     <th data-field="gender">Gender</th>
-                    <th data-field="quizAccessed">Quiz Accessed</th>
+                    <th data-field="quizAccessed">Quiz Assessed</th>
                     <th data-align="center" data-halign="left" data-field="action">Action</th>
                     
                 </tr>

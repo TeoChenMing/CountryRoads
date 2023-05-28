@@ -35,7 +35,7 @@
 
                         <asp:Button ID="Login" type="submit" class="btn btn-primary mt-4" runat="server" Text="Login" OnClick="Login_Click"/>
 
-                        
+                        <a id="loginLink" href="../User/UserLogin.aspx" class="mt-3">Not an Admin? Go Back to Main Page.</a>
                         
                     </div>
                 
