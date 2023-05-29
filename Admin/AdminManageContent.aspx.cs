@@ -46,8 +46,8 @@ namespace CountryRoads.Admin
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
             con.Open();
 
-            using (var cmd = new SqlCommand("UPDATE country SET countryName = @countryName, countryCapital = @countryCapital, countryArea = @countryArea, countryPopulation = @countryPopulation, " +
-                "countryLanguage = @countryLanguage, countryCurrency = @countryCurrency WHERE countryId = @countryCode", con))
+            using (var cmd = new SqlCommand("UPDATE country SET countryName = @countryName, countryCapital = @countryCapital, countryArea = @countryArea" +
+                ", countryPopulation = @countryPopulation, countryLanguage = @countryLanguage, countryCurrency = @countryCurrency WHERE countryId = @countryCode", con))
             {
                 cmd.Parameters.AddWithValue("@countryCode", CountryCode.Value);
                 cmd.Parameters.AddWithValue("@countryName", CountryName.Value);

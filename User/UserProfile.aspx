@@ -2,15 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        #countryList {
+        #countryList, #countryList1 {
             width: 100%;
-            height: 60vh;
+            height: 50vh;
             overflow: auto;
-            overflow-anchor: none;
             box-sizing: content-box;
         }
 
-            #countryList li {
+            #countryList li, #countryList1 li {
                 margin: 1rem;
                 padding: 0 1rem;
                 width: 150px;
@@ -18,7 +17,7 @@
                 transition: all 300ms ease;
             }
 
-                #countryList li:hover {
+                #countryList li:hover, #countryList1 li:hover {
                     transform: scale(1.05);
                     background-color: rgba(0,0,0,0.1)
                 }
@@ -51,11 +50,8 @@
                 background-color: rgba(65,105,225, 0.5);
             }
 
-        .profile-info {
-            margin: 20px 0;
-        }
 
-        .profile-info .profile-details .row {
+        .profile-details .row {
             padding: 5px 18px;
         }
     </style>
@@ -69,7 +65,7 @@
 
             <div class="col-2 ps-0">
 
-                <div class="d-flex flex-column bg-body-tertiary sidebar vh-100">
+                <div class="d-flex flex-column flex-shrink-0 bg-body-tertiary sidebar vh-100">
                     <div class="mt-3 mb-2">
                         <h1 class="mt-2 mb-0 ps-4 text-white">Profile</h1>
                         <hr />
@@ -87,7 +83,7 @@
             </div>
 
             <section id="Dashboard" class="col-10 z-3 mt-4">
-                <div class="row profile-info">
+                <div class="row mb-4 p-3">
                     <% if (userTable != null)
                         {
                             foreach (DataRow row in userTable.Rows)
@@ -112,9 +108,9 @@
                             <div class="col-2 align-self-center">
                                 Password: 
                             </div>
-                            <div class="col-2 align-self-center">
+                            <div class="col align-self-center">
                                 **********
-                                <asp:Button ID="ChgPassword" runat="server" Text="Change Password" class="btn btn-primary" OnClick="ChgPassword_Click"/>
+                                <asp:Button ID="ChgPassword" runat="server" Text="Change Password" class="ms-3 btn btn-primary" OnClick="ChgPassword_Click"/>
                             </div>
                         </div>
                         <div class="row">
@@ -143,8 +139,8 @@
                         </div>
                         <%}
                             }          %>
-                </div>
                     </div>
+                </div>
 
                 <div class="row">
                     <div class="col">
@@ -184,7 +180,7 @@
                                 </div>
                             </div>
                             <div class="d-inline-block">
-                                <ul id="countryList" class="d-flex flex-wrap list-unstyled flex-column">
+                                <ul id="countryList1" class="d-flex flex-wrap list-unstyled flex-column">
                                     <% if (dtable != null)
                                         {
                                             foreach (DataRow row in dtable.Rows)

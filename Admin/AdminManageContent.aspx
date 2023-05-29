@@ -121,7 +121,7 @@
                 return false;
 
             }
-            if (!isInt($('#population').val())) {
+            if (!isNumber($('#population').val())) {
                 $('#jsscript_ErrorPopulationMsg').text('Please enter a valid Population.');
 
                 return false;
@@ -143,17 +143,16 @@
             return true;
         }
 
-        // Helper function to check if a value is an integer
-        function isInt(value) {
-            return /^-?\d+$/.test(value);
-        }
-
         // Helper function to check if a value contains only letters (alphabetic characters)
         function isString(value) {
             return /^[A-Za-z]+$/.test(value);
         }
 
         // Helper function to check if a value is a float
+        function isNumber(value) {
+            return /^-?\d+(\.\d+)?$/.test(value);
+        }
+
         function isFloat(value) {
             return /^-?\d+(\.\d+)?$/.test(value);
         }

@@ -38,7 +38,8 @@ namespace CountryRoads.User
                 else
                 {
                     //create record in a table called userTable
-                    string query1 = "insert into users (username, password, email, fullName, gender, quizAccessed, status, dateCreated) values (@username, @password, @email, @fullName, @gender, @quizAccessed, @status, @dateCreated)";
+                    string query1 = "insert into users (username, password, email, fullName, gender, quizAccessed, status, dateCreated) " +
+                        "values (@username, @password, @email, @fullName, @gender, @quizAccessed, @status, @dateCreated)";
                     SqlCommand cmd1 = new SqlCommand(query1, con);
 
                     cmd1.Parameters.AddWithValue("@username", username.Text);

@@ -5,6 +5,7 @@
             padding: 5px auto;
         }
         .option-box {
+            margin: 10px;
             padding: 15px;
             border: 0.5px solid #D3D3D3;
             transition: all 300ms ease;

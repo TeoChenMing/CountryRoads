@@ -22,7 +22,8 @@ namespace CountryRoads.User
 
             if (Session["userName"] != null)
             {
-                da = new SqlDataAdapter("SELECT * FROM country c INNER JOIN userBookmark ub ON c.countryId = ub.countryId INNER JOIN users u ON ub.userId = u.userId WHERE u.userName = '" + Session["userName"] + "' ORDER BY c.countryName ASC", con);
+                da = new SqlDataAdapter("SELECT * FROM country c INNER JOIN userBookmark ub ON c.countryId = ub.countryId " +
+                    "INNER JOIN users u ON ub.userId = u.userId WHERE u.userName = '" + Session["userName"] + "' ORDER BY c.countryName ASC", con);
                 dt = new DataTable();
                 da.Fill(dt);
 

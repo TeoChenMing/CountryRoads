@@ -109,9 +109,9 @@ namespace CountryRoads.Admin
                 Response.Redirect(Request.RawUrl);
 
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex);
             }
         }
     }
