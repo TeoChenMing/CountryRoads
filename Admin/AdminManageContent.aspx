@@ -105,6 +105,58 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="jsscript" runat="server">
     <script>
+        function validationCheck() {
+
+
+            if ($('#name').val() === '' || $('#capital').val() === '' || $('#area').val() === '' || $('#population').val() === ''
+                || $('#language').val() === '' || $('#currency').val() === '') {
+
+                $('#jsscript_ErrorEmptyMsg').text('Please fill in all the required fields.');
+
+                return false;
+
+            }
+            if (!isFloat($('#area').val())) {
+                $('#jsscript_ErrorAreaMsg').text('Please enter a valid Area.');
+                return false;
+
+            }
+            if (!isInt($('#population').val())) {
+                $('#jsscript_ErrorPopulationMsg').text('Please enter a valid Population.');
+
+                return false;
+            }
+            if (!isString($('#name').val()) || !isString($('#capital').val())) {
+                $('#jsscript_ErrorStringMsg').text('Please enter only text.');
+                return false;
+            }
+
+            $('#<% =CountryCode.ClientID %>').val($('#code').val());
+            $('#<% =CountryName.ClientID %>').val($('#name').val());
+            $('#<% =Capital.ClientID %>').val($('#capital').val());
+            $('#<% =Area.ClientID %>').val($('#area').val());
+            $('#<% =Population.ClientID %>').val($('#population').val());
+            $('#<% =Languages.ClientID %>').val($('#language').val());
+            $('#<% =Currency.ClientID %>').val($('#currency').val());
+
+
+            return true;
+        }
+
+        // Helper function to check if a value is an integer
+        function isInt(value) {
+            return /^-?\d+$/.test(value);
+        }
+
+        // Helper function to check if a value contains only letters (alphabetic characters)
+        function isString(value) {
+            return /^[A-Za-z]+$/.test(value);
+        }
+
+        // Helper function to check if a value is a float
+        function isFloat(value) {
+            return /^-?\d+(\.\d+)?$/.test(value);
+        }
 
         $('#myTable').on('click', 'tr', function () {
 
@@ -155,6 +207,7 @@
                 '<div class="col-8">' +
                 '<input type="text" class="form-control" id="area" value="' + rowData[4] + '" >' +
                 '</div>' +
+                '<asp:Label ID="ErrorAreaMsg" class="text text-danger" runat="server" Text="" ></asp:Label>' +
                 '</div>' +
                 '</div>' +
                 '<div class="col-6">' +
@@ -170,6 +223,7 @@
                 '<div class="col-8">' +
                 '<input type="text" class="form-control" id="population" value="' + rowData[5] + '" >' +
                 '</div>' +
+                '<asp:Label ID="ErrorPopulationMsg" class="text text-danger" runat="server" Text="" ></asp:Label>' +
                 '</div>' +
                 '<div class="row mb-3">' +
                 '<div class="col-3">' +
@@ -205,21 +259,10 @@
                 '<input type="text" class="form-control" id="continent" value="' + rowData[9] + '" disabled >' +
                 '</div>' +
                 '</div>' +
+                '<asp:Label ID="ErrorEmptyMsg" class="text text-danger" runat="server" Text="" ></asp:Label>' +
+                '<asp:Label ID="ErrorStringMsg" class="text text-danger" runat="server" Text="" ></asp:Label>' +
                 '</div>'
             );
-
-            $('#ModalContent_Update').on('click', function () {
-
-                $('#<% =CountryCode.ClientID %>').val(rowData[0]);
-                $('#<% =CountryName.ClientID %>').val($('#name').val());
-                $('#<% =Capital.ClientID %>').val($('#capital').val());
-                $('#<% =Area.ClientID %>').val($('#area').val());
-                $('#<% =Population.ClientID %>').val($('#population').val());
-                $('#<% =Languages.ClientID %>').val($('#language').val());
-                $('#<% =Currency.ClientID %>').val($('#currency').val());
-
-            })
-
 
         });
 
@@ -228,6 +271,8 @@
             // remove the event listener for the shown.bs.modal event
             $(this).off('shown.bs.modal');
         });
+
+        
 
 
     </script>
@@ -247,7 +292,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <asp:Button ID="Update" type="button" class="btn btn-primary" runat="server" Text="Update" OnClick="Update_Click"/>
+                <asp:Button ID="Update" type="button" class="btn btn-primary" runat="server" Text="Update" OnClientClick="return validationCheck();" OnClick="Update_Click"/>
               </div>
             </div>
           </div>

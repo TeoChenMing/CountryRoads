@@ -41,34 +41,35 @@ namespace CountryRoads.Admin
 
         protected void Update_Click(object sender, EventArgs e)
         {
+            
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CountryRoadsDB"].ConnectionString);
             con.Open();
 
-            
             using (var cmd = new SqlCommand("UPDATE country SET countryName = @countryName, countryCapital = @countryCapital, countryArea = @countryArea, countryPopulation = @countryPopulation, " +
                 "countryLanguage = @countryLanguage, countryCurrency = @countryCurrency WHERE countryId = @countryCode", con))
             {
                 cmd.Parameters.AddWithValue("@countryCode", CountryCode.Value);
                 cmd.Parameters.AddWithValue("@countryName", CountryName.Value);
                 cmd.Parameters.AddWithValue("@countryCapital", Capital.Value);
-                cmd.Parameters.AddWithValue("@countryArea", Int64.Parse(Area.Value));
-                cmd.Parameters.AddWithValue("@countryPopulation", float.Parse(Population.Value, CultureInfo.InvariantCulture.NumberFormat));
+                cmd.Parameters.AddWithValue("@countryArea", float.Parse(Area.Value, CultureInfo.InvariantCulture.NumberFormat));
+                cmd.Parameters.AddWithValue("@countryPopulation", Int64.Parse(Population.Value));
                 cmd.Parameters.AddWithValue("@countryLanguage", Languages.Value);
                 cmd.Parameters.AddWithValue("@countryCurrency", Currency.Value);
 
                 cmd.ExecuteNonQuery();
 
-                
+
             }
 
             con.Close();
 
             Response.Redirect(Request.RawUrl);
-
+            
         }
 
-   
-       
+
+
+
     }
 }

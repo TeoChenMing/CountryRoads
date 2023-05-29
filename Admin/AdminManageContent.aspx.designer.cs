@@ -78,6 +78,42 @@ namespace CountryRoads.Admin
         protected global::System.Web.UI.WebControls.HiddenField Currency;
 
         /// <summary>
+        /// ErrorAreaMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorAreaMsg;
+
+        /// <summary>
+        /// ErrorPopulationMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorPopulationMsg;
+
+        /// <summary>
+        /// ErrorEmptyMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorEmptyMsg;
+
+        /// <summary>
+        /// ErrorStringMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorStringMsg;
+
+        /// <summary>
         /// Update control.
         /// </summary>
         /// <remarks>
