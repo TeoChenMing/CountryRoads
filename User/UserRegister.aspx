@@ -31,6 +31,10 @@
                         <asp:TextBox type="password" class="form-control fst-italic" ID="password" placeholder="Enter your password here..." runat="server"></asp:TextBox>
                     </div>
                     <div class="pb-3">
+                        <label for="confirmPassword" class="fs-6 form-label text-start">Confirm Password:</label>
+                        <asp:TextBox type="password" class="form-control fst-italic" ID="confirmPassword" placeholder="Confirm your password" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="pb-3">
                         <label for="fullName" class="fs-6 form-label text-start">Full Name:</label>
                         <asp:TextBox type="text" class="form-control fst-italic" ID="fullName" placeholder="Enter your full name here..." runat="server"></asp:TextBox>
                     </div>

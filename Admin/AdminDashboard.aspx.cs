@@ -51,7 +51,7 @@ namespace CountryRoads.Admin
                     userProfile.Text = userCountText;
                 }
 
-                SqlDataAdapter da3 = new SqlDataAdapter("SELECT SUM(quizAccessed) from users", con);
+                SqlDataAdapter da3 = new SqlDataAdapter("SELECT SUM(quizAssessed) from users", con);
                 DataTable dt3 = new DataTable();
                 da3.Fill(dt3);
 

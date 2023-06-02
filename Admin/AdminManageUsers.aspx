@@ -37,7 +37,8 @@
                     <th data-field="email">Email</th>
                     <th data-field="fullName">Fullname</th>
                     <th data-field="gender">Gender</th>
-                    <th data-field="quizAccessed">Quiz Assessed</th>
+                    <th data-field="quizAssessed">Quiz Assessed</th>
+                    <th data-field="status">Status</th>
                     <th data-align="center" data-halign="left" data-field="action">Action</th>
                     
                 </tr>
@@ -55,7 +56,7 @@
                         <td class="text-nowrap text-truncate"><% =row["email"] %></td>
                         <td class="text-nowrap text-truncate"><% =row["fullName"] %></td>
                         <td class="text-nowrap text-truncate"><% =row["gender"] %></td>
-                        <td class="text-nowrap text-truncate"><% =row["quizAccessed"] %></td>
+                        <td class="text-nowrap text-truncate"><% =row["quizAssessed"] %></td>
                         <td><% =row["status"] %></td>       
                         <td><a class="editBtn" href="#" data-bs-toggle="modal" data-bs-target="#myModal"><i class="bi bi-pencil-square"></i></a></td>
                     </tr>
@@ -63,8 +64,6 @@
                 <% 
                     } }
                 %>
-
-              
             </tbody>
         </table>
                   
@@ -131,10 +130,10 @@
                         '</div>' +
                         '<div class="row mb-3">' +
                             '<div class="col-3">' +
-                                '<label for="quizAccessed" class="form-label">Quiz Accessed:</label>' +
+                                '<label for="quizAccessed" class="form-label">Quiz Assessed:</label>' +
                             '</div>' +
                             '<div class="col-7">' +
-                                '<input type="text" class="form-control" id="quizAccessed" value="' + rowData[6] + '" disabled>' +
+                                '<input type="text" class="form-control" id="quizAssessed" value="' + rowData[6] + '" disabled>' +
                             '</div>' +
                         '</div>' +
                         '<div class="row mb-3">' +

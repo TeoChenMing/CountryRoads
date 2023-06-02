@@ -66,20 +66,20 @@ namespace CountryRoads.User
             SqlCommand cmdType = new SqlCommand("SELECT * FROM users WHERE username = '" + session_username + "' ", con);
             SqlDataReader dr = cmdType.ExecuteReader();
 
-            int quizAccessedOri = 0;
+            int quizAssessedOri = 0;
 
             while (dr.Read())
             {
-                quizAccessedOri = Int32.Parse(dr["quizAccessed"].ToString());
+                quizAssessedOri = Int32.Parse(dr["quizAssessed"].ToString());
             }
 
-            quizAccessedOri += 1;
+            quizAssessedOri += 1;
 
             dr.Close();
 
-            using (var cmd = new SqlCommand("UPDATE users SET quizAccessed = @quizAccessed WHERE username = @username", con))
+            using (var cmd = new SqlCommand("UPDATE users SET quizAssessed = @quizAssessed WHERE username = @username", con))
             {
-                cmd.Parameters.AddWithValue("@quizAccessed", quizAccessedOri);
+                cmd.Parameters.AddWithValue("@quizAssessed", quizAssessedOri);
                 cmd.Parameters.AddWithValue("@username", Session["userName"]);
 
                 cmd.ExecuteNonQuery();

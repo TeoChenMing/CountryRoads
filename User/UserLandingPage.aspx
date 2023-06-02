@@ -3,8 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         body {
-            background: rgb(181,220,255);
-            background: linear-gradient(180deg, rgba(181,220,255,1) 0%, rgba(29,118,253,1) 40%, rgba(33,37,41,1) 70%);
+            /*background: rgb(181,220,255);
+            background: linear-gradient(180deg, rgba(181,220,255,1) 0%, rgba(29,118,253,1) 40%, rgba(33,37,41,1) 70%);*/
+            background-image: url('../Assets/Images/background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
         }
 
         path {

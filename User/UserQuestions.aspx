@@ -48,7 +48,7 @@
                                 {
 
                         %>
-                        <h1><% =row["quizAccessed"] %></h1>
+                        <h1><% =row["quizAssessed"] %></h1>
                         <% }
                             }  %>
                     </div>
@@ -154,6 +154,8 @@
                                             </div>
                                         </div>
 
+                                        <% if ($"{row["quizType"]}" != "TrueFalse")
+                                            {  %>
                                         <div class="row" id="moreOptions">
                                             <div class="col">
                                                 <div class="option-box">
@@ -172,6 +174,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <% } %>
                                         <input type="hidden" id="questionAns" value="<% =row["answer"] %>" />
 
                                     </div>
@@ -241,7 +244,7 @@
                     <div id="QuestionsSetCarousel" class="carousel slide" data-interval="false">
                         <div class="carousel-inner">
                             
-                            <%  if (questionsDt != null)
+                            <%  if (questionsDt != null && questionsDt.Rows.Count != 0)
                                 {
                                     int counter = 0;
                             %>
@@ -255,9 +258,12 @@
 
                             %>
                             
-                            <% if (counter == 0) { %>
+                            <% if (counter == 0)
+                                { %>
                             <div class="carousel-item active">
-                            <% } else { %>
+                            <% }
+                                else
+                                { %>
                             <div class="carousel-item">
                             <%  }%>
 
@@ -299,6 +305,8 @@
                                             </div>
                                         </div>
 
+                                        <% if ($"{row["quizType"]}" != "TrueFalse")
+                                            {  %>
                                         <div class="row" id="set_moreOptions">
                                             <div class="col">
                                                 <div class="option-box">
@@ -317,6 +325,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <% } %>
 
                                     </div>
 
@@ -342,16 +351,38 @@
                                     <% } %>
                                 </div>
 
-                            <% if (counter == 0) { %>
+                            <% if (counter == 0)
+                                { %>
                             </div>
-                            <% } else { %>
+                            <% }
+                                else
+                                { %>
                             </div>
                             <%  }%>
                             <%
                                         counter += 1;
                                     }
                                 }
+                                else
+                                {
                             %>
+                            
+                                <div class="carousel-item active">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="BlankModalHeader">Error</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        You have not viewed any country yet, please consider viewing some before you attempt this!
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            <% } %>
 
                             <!-- Question Complete Modal -->
                             <div class="carousel-item">
@@ -364,13 +395,13 @@
 
                                     <div class="row">
                                         <div id="score" class="col text-center" style="font-size: 21px">
-                                            You just got <b id="quizScore"></b> out of 5!
+                                            You just got <b id="quizScore">0</b> out of 5!
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col text-center">
-                                            <h2 id="setQuestionStatus">Status</h2>
+                                            <h2 id="setQuestionStatus">Hey at least give it a try would ya?</h2>
                                         </div>
                                     </div>
 
@@ -443,7 +474,7 @@
             clickButton.click();
         }
 
-        var points = 0
+        var points = 0;
 
         function calculateResults(questionId, answer) {
             console.log("Question ID: ", questionId);
