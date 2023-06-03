@@ -39,6 +39,7 @@ namespace CountryRoads.User
                     genderChecked = false;
                 }
 
+                ErrorMsg.Text = "";
 
                 // Simple Validation
                 if (username.Text.Trim() == "" || email.Text.Trim() == "" || password.Text.Trim() == "" || confirmPassword.Text.Trim() == "" || fullName.Text.Trim() == "" || !genderChecked)
@@ -79,10 +80,10 @@ namespace CountryRoads.User
                     string query1 = "insert into users (username, password, email, fullName, gender, quizAssessed, status, dateCreated) values (@username, @password, @email, @fullName, @gender, @quizAssessed, @status, @dateCreated)";
                     SqlCommand cmd1 = new SqlCommand(query1, con);
 
-                    cmd1.Parameters.AddWithValue("@username", username.Text);
-                    cmd1.Parameters.AddWithValue("@password", password.Text);
-                    cmd1.Parameters.AddWithValue("@email", email.Text);
-                    cmd1.Parameters.AddWithValue("@fullName", fullName.Text);
+                    cmd1.Parameters.AddWithValue("@username", username.Text.Trim());
+                    cmd1.Parameters.AddWithValue("@password", password.Text.Trim());
+                    cmd1.Parameters.AddWithValue("@email", email.Text.Trim());
+                    cmd1.Parameters.AddWithValue("@fullName", fullName.Text.Trim());
                     string selectedGender = "";
                     if (male.Checked)
                     {

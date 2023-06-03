@@ -52,7 +52,6 @@
                     <tr>
                         <td><% =row["userId"] %></td>
                         <td class="text-nowrap text-truncate"><% =row["username"] %> </td>
-                        <td hidden><% = row["password"] %></td>
                         <td class="text-nowrap text-truncate"><% =row["email"] %></td>
                         <td class="text-nowrap text-truncate"><% =row["fullName"] %></td>
                         <td class="text-nowrap text-truncate"><% =row["gender"] %></td>
@@ -103,13 +102,12 @@
                                 '<input type="text" class="form-control" id="username" value="' + rowData[1] + '" disabled>' +
                             '</div>' +
                         '</div>' +
-                        '<input type="hidden" id="password" value = "'+rowData[2]+'">' +
                         '<div class="row mb-3">' +
                             '<div class="col-3">' +
                                 '<label for="email" class="form-label">Email:</label>' +
                             '</div>' +
                             '<div class="col-7">' +
-                                '<input type="text" class="form-control" id="email" value="' + rowData[3] + '" disabled>' +
+                                '<input type="text" class="form-control" id="email" value="' + rowData[2] + '" disabled>' +
                             '</div>' +
                         '</div>' +
                         '<div class="row mb-3">' +
@@ -117,7 +115,7 @@
                                 '<label for="fullName" class="form-label">Fullname:</label>' +
                             '</div>' +
                             '<div class="col-7">' +
-                                '<input type="text" class="form-control" id="fullName" value="' + rowData[4] + '" disabled>' +
+                                '<input type="text" class="form-control" id="fullName" value="' + rowData[3] + '" disabled>' +
                             '</div>' +
                         '</div>' +
                         '<div class="row mb-3">' +
@@ -125,7 +123,7 @@
                                 '<label for="gender" class="form-label">Gender:</label>' +
                             '</div>' +
                             '<div class="col-7">' +
-                                '<input type="text" class="form-control" id="gender" value="' + rowData[5] + '" disabled>' +
+                                '<input type="text" class="form-control" id="gender" value="' + rowData[4] + '" disabled>' +
                             '</div>' +
                         '</div>' +
                         '<div class="row mb-3">' +
@@ -133,7 +131,7 @@
                                 '<label for="quizAccessed" class="form-label">Quiz Assessed:</label>' +
                             '</div>' +
                             '<div class="col-7">' +
-                                '<input type="text" class="form-control" id="quizAssessed" value="' + rowData[6] + '" disabled>' +
+                                '<input type="text" class="form-control" id="quizAssessed" value="' + rowData[5] + '" disabled>' +
                             '</div>' +
                         '</div>' +
                         '<div class="row mb-3">' +
@@ -141,7 +139,7 @@
                                 '<label for="status" class="form-label">Status:</label>' +
                             '</div>' +
                             '<div class="col-7">' +
-                                '<input type="text" class="form-control" id="status" value="' + rowData[7] + '" disabled>' +
+                                '<input type="text" class="form-control" id="status" value="' + rowData[6] + '" disabled>' +
                             '</div>' +
                         '</div>' +
                     '</div>' +
